@@ -1,5 +1,7 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -14,6 +16,7 @@ namespace VkNet.Model
 		/// URL-адрес изображения.
 		/// </summary>
 		[JsonProperty("url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Url { get; set; }
 
 		/// <summary>

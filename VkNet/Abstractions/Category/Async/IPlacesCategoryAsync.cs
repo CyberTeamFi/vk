@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -63,7 +63,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getById
 		/// </remarks>
-		Task<ReadOnlyCollection<Place>> GetByIdAsync(IEnumerable<ulong> places);
+		Task<List<Place>> GetByIdAsync(IEnumerable<ulong> places);
 
 		/// <summary>
 		/// Возвращает список отметок пользователей в местах согласно заданным параметрам.
@@ -125,7 +125,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getTypes
 		/// </remarks>
-		Task<ReadOnlyCollection<PlaceType>> GetTypesAsync();
+		Task<List<PlaceType>> GetTypesAsync();
 
 		/// <summary>
 		/// Возвращает список мест, найденных по заданным условиям поиска.

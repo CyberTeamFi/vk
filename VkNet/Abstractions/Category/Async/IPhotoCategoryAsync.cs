@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
@@ -147,7 +147,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.getById
 		/// </remarks>
-		Task<ReadOnlyCollection<Photo>> GetByIdAsync(IEnumerable<string> photos
+		Task<List<Photo>> GetByIdAsync(IEnumerable<string> photos
 													, bool? extended = null
 													, bool? photoSizes = null
 													, bool skipAuthorization = false);
@@ -267,7 +267,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveWallPhoto
 		/// </remarks>
-		Task<ReadOnlyCollection<Photo>> SaveWallPhotoAsync(string response, ulong? userId, ulong? groupId = null, string caption = null);
+		Task<List<Photo>> SaveWallPhotoAsync(string response, ulong? userId, ulong? groupId = null, string caption = null);
 
 		/// <summary>
 		/// Возвращает адрес сервера для загрузки фотографии на стену пользователя или
@@ -320,7 +320,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveMessagesPhoto
 		/// </remarks>
-		Task<ReadOnlyCollection<Photo>> SaveMessagesPhotoAsync(string response);
+		Task<List<Photo>> SaveMessagesPhotoAsync(string response);
 
 		/// <summary>
 		/// Возвращает адрес сервера для загрузки обложки сообщества.
@@ -465,7 +465,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.save
 		/// </remarks>
-		Task<ReadOnlyCollection<Photo>> SaveAsync(PhotoSaveParams @params);
+		Task<List<Photo>> SaveAsync(PhotoSaveParams @params);
 
 		/// <summary>
 		/// Позволяет скопировать фотографию в альбом "Сохраненные фотографии".
@@ -930,7 +930,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.getTags
 		/// </remarks>
-		Task<ReadOnlyCollection<Tag>> GetTagsAsync(ulong photoId, long? ownerId = null, string accessKey = null);
+		Task<List<Tag>> GetTagsAsync(ulong photoId, long? ownerId = null, string accessKey = null);
 
 		/// <summary>
 		/// Добавляет отметку на фотографию.
@@ -1072,7 +1072,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveMarketPhoto
 		/// </remarks>
-		Task<ReadOnlyCollection<Photo>> SaveMarketPhotoAsync(long groupId, string response);
+		Task<List<Photo>> SaveMarketPhotoAsync(long groupId, string response);
 
 		/// <summary>
 		/// Сохраняет фотографии после успешной загрузки на URI, полученный методом
@@ -1095,6 +1095,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveMarketAlbumPhoto
 		/// </remarks>
-		Task<ReadOnlyCollection<Photo>> SaveMarketAlbumPhotoAsync(long groupId, string response);
+		Task<List<Photo>> SaveMarketAlbumPhotoAsync(long groupId, string response);
 	}
 }

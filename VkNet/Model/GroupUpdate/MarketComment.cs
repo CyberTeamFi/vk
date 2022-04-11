@@ -36,7 +36,7 @@ namespace VkNet.Model.GroupUpdate
 				Text = response[key: "text"],
 				ReplyToUser = response[key: "reply_to_user"],
 				ReplyToComment = response[key: "reply_to_comment"],
-				Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x),
+				Attachments = response[key: "attachments"].ToListOf<Attachment>(selector: x => x),
 				Likes = response[key: "likes"],
 				ItemId = response["item_id"],
 				MarketOwnerId = response["market_owner_id"]

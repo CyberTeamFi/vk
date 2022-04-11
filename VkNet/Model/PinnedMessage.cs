@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
@@ -44,7 +44,7 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("attachments")]
 		[JsonConverter(typeof(AttachmentJsonConverter))]
-		public ReadOnlyCollection<Attachment> Attachments { get; set; }
+		public List<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Информация о местоположении
@@ -56,7 +56,7 @@ namespace VkNet.Model
 		/// Массив пересланных сообщений (если есть).
 		/// </summary>
 		[JsonProperty("fwd_messages")]
-		public ReadOnlyCollection<Message> ForwardMessages { get; set; }
+		public List<Message> ForwardMessages { get; set; }
 
 		/// <summary>
 		/// Идентификатор сообщения.

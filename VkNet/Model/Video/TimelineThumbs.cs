@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Infrastructure;
 using VkNet.Model.Attachments;
@@ -63,7 +63,7 @@ namespace VkNet.Model
 		/// </remarks>
 		/// </summary>
 		[JsonProperty("links")]
-		public ReadOnlyCollection<Uri> Links { get; set; }
+		public List<Uri> Links { get; set; }
 
 		/// <summary>
 		/// TODO: Undocumented

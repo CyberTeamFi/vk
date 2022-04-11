@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -15,7 +15,7 @@ namespace VkNet.Model.Attachments
 		/// Cards
 		/// </summary>
 		[JsonProperty("cards")]
-		public ReadOnlyCollection<PrettyCard> Cards { get; set; }
+		public List<PrettyCard> Cards { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -26,7 +26,7 @@ namespace VkNet.Model.Attachments
 		{
 			return new PrettyCards
 			{
-				Cards = response["cards"].ToReadOnlyCollectionOf<PrettyCard>(x => x)
+				Cards = response["cards"].ToListOf<PrettyCard>(x => x)
 			};
 		}
 

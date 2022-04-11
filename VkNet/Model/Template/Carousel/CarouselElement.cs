@@ -63,7 +63,7 @@ namespace VkNet.Model.Template.Carousel
 				Description = response[key: "description"],
 				Action = response[key: "action"],
 				PhotoId = response[key: "photo_id"],
-				Buttons = response[key: "buttons"].ToReadOnlyCollectionOf<MessageKeyboardButton>(selector: x => x)
+				Buttons = response[key: "buttons"].ToListOf<MessageKeyboardButton>(selector: x => x)
 			};
 		}
 

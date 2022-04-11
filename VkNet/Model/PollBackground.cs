@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
@@ -48,12 +48,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// (для type = tile) изображение плитки паттерна. Массив объектов изображений.
 		/// </summary>
-		public ReadOnlyCollection<Photo> Images { get; set; }
+		public List<Photo> Images { get; set; }
 
 		/// <summary>
 		/// (для type = gradient) точки градиента.
 		/// </summary>
-		public ReadOnlyCollection<PollBackgroundPoint> Points { get; set; }
+		public List<PollBackgroundPoint> Points { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -70,8 +70,8 @@ namespace VkNet.Model
 				Color = response["color"],
 				Width = response["width"],
 				Height = response["height"],
-				Images = response["images"].ToReadOnlyCollectionOf<Photo>(),
-				Points = response["points"].ToReadOnlyCollectionOf<PollBackgroundPoint>()
+				Images = response["images"].ToListOf<Photo>(),
+				Points = response["points"].ToListOf<PollBackgroundPoint>()
 			};
 		}
 

@@ -1,4 +1,5 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -44,6 +45,7 @@ namespace VkNet.Model
 		/// Cодержит внешнюю ссылку на ресурс, с которого была опубликована запись.
 		/// </summary>
 		[JsonProperty("source_url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Uri { get; set; }
 
 	#region Методы

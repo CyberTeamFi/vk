@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -38,7 +38,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// </summary>
 		[JsonProperty("images")]
-		public ReadOnlyCollection<Photo> Images { get; set; }
+		public List<Photo> Images { get; set; }
 
 		/// <summary>
 		/// Текст кнопки.
@@ -78,7 +78,7 @@ namespace VkNet.Model.Attachments
 				LinkUrl = response["link_url"],
 				Title = response["title"],
 				Button = response["button"],
-				Images = response["images"].ToReadOnlyCollectionOf<Photo>(x => x),
+				Images = response["images"].ToListOf<Photo>(x => x),
 				ButtonText = response["button_text"],
 				Price = response["price"],
 				PriceOld = response["price_old"]

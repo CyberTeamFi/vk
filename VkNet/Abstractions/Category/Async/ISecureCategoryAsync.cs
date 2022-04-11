@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 
@@ -113,7 +113,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getSMSHistory
 		/// </remarks>
-		Task<ReadOnlyCollection<SmsHistoryItem>> GetSmsHistoryAsync(ulong? userId = null, DateTime? dateFrom = null,
+		Task<List<SmsHistoryItem>> GetSmsHistoryAsync(ulong? userId = null, DateTime? dateFrom = null,
 																	DateTime? dateTo = null,
 																	ulong? limit = null);
 
@@ -129,7 +129,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getTransactionsHistory
 		/// </remarks>
-		Task<ReadOnlyCollection<Transaction>> GetTransactionsHistoryAsync();
+		Task<List<Transaction>> GetTransactionsHistoryAsync();
 
 		/// <summary>
 		/// Возвращает ранее выставленный игровой уровень одного или нескольких
@@ -145,7 +145,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getUserLevel
 		/// </remarks>
-		Task<ReadOnlyCollection<SecureLevel>> GetUserLevelAsync(IEnumerable<long> userIds);
+		Task<List<SecureLevel>> GetUserLevelAsync(IEnumerable<long> userIds);
 
 		/// <summary>
 		/// Выдает пользователю стикер и открывает игровое достижение.
@@ -172,7 +172,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.giveEventSticker
 		/// </remarks>
-		Task<ReadOnlyCollection<EventSticker>> GiveEventStickerAsync(IEnumerable<ulong> userIds, ulong achievementId);
+		Task<List<EventSticker>> GiveEventStickerAsync(IEnumerable<ulong> userIds, ulong achievementId);
 
 		/// <summary>
 		/// Отправляет уведомление пользователю.
@@ -196,7 +196,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.sendNotification
 		/// </remarks>
-		Task<ReadOnlyCollection<ulong>> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null);
+		Task<List<ulong>> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null);
 
 		/// <summary>
 		/// Отправляет SMS-уведомление на мобильный телефон пользователя.

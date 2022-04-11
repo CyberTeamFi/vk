@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 
@@ -15,24 +15,24 @@ namespace VkNet.Model
 		/// Подкасты.
 		/// </summary>
 		[JsonProperty("podcasts")]
-		public ReadOnlyCollection<Podcast> Podcasts { get; set; }
+		public List<Podcast> Podcasts { get; set; }
 
 		/// <summary>
 		/// Эпизоды.
 		/// </summary>
 		[JsonProperty("episodes")]
-		public ReadOnlyCollection<Podcast> Episodes { get; set; }
+		public List<Podcast> Episodes { get; set; }
 
 		/// <summary>
 		/// Профили.
 		/// </summary>
 		[JsonProperty("profiles")]
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Группы.
 		/// </summary>
 		[JsonProperty("groups")]
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public List<Group> Groups { get; set; }
 	}
 }

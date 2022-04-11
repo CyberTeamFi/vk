@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
@@ -61,7 +61,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/users.get
 		/// </remarks>
-		Task<ReadOnlyCollection<User>> GetAsync([NotNull]
+		Task<List<User>> GetAsync([NotNull]
 												IEnumerable<long> userIds
 												, ProfileFields fields = null
 												, NameCase nameCase = null);
@@ -79,7 +79,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/users.get
 		/// </remarks>
-		Task<ReadOnlyCollection<User>> GetAsync([NotNull]
+		Task<List<User>> GetAsync([NotNull]
 												IEnumerable<string> screenNames
 												, ProfileFields fields = null
 												, NameCase nameCase = null);

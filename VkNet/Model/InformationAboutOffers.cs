@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -45,6 +46,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Ссылка на изображение.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Img { get; set; }
 
 		/// <summary>

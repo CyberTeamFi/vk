@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 
@@ -37,7 +37,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/storage.get
 		/// </remarks>
-		Task<ReadOnlyCollection<StorageObject>> GetAsync(IEnumerable<string> keys = null, ulong? userId = null, bool? global = null);
+		Task<List<StorageObject>> GetAsync(IEnumerable<string> keys = null, ulong? userId = null, bool? global = null);
 
 		/// <summary>
 		/// Возвращает названия всех переменных.
@@ -68,7 +68,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/storage.getKeys
 		/// </remarks>
-		Task<ReadOnlyCollection<string>> GetKeysAsync(ulong? userId = null, bool? global = null, ulong? offset = null, ulong? count = null);
+		Task<List<string>> GetKeysAsync(ulong? userId = null, bool? global = null, ulong? offset = null, ulong? count = null);
 
 		/// <summary>
 		/// Сохраняет значение переменной, название которой передано в параметре key.

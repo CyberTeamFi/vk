@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 
@@ -20,7 +20,7 @@ namespace VkNet.Abstractions
 		AppImageResult GetGroupImages(int offset, int count, AppWidgetImageType imageType);
 
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.GetImagesByIdAsync"/>
-		ReadOnlyCollection<AppImage> GetImagesById(string images);
+		List<AppImage> GetImagesById(string images);
 
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.SaveAppImageAsync"/>
 		AppImage SaveAppImage(string hash, string image);

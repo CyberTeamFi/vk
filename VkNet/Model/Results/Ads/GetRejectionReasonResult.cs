@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -21,7 +21,7 @@ namespace VkNet.Model
 		/// Время до следующего обновления в секундах.
 		/// </summary>
 		[JsonProperty("rules")]
-		public ReadOnlyCollection<RejectionRules> Rules { get; set; }
+		public List<RejectionRules> Rules { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -33,7 +33,7 @@ namespace VkNet.Model
 			return new GetRejectionReasonResult
 			{
 				Comment = response["comment"],
-				Rules = response["rules"].ToReadOnlyCollectionOf<RejectionRules>()
+				Rules = response["rules"].ToListOf<RejectionRules>()
 			};
 		}
 	}

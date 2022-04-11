@@ -55,9 +55,9 @@ namespace VkNet.Categories
 			var result = new TopicsFeed
 			{
 					Count = response[key: "count"]
-					, Items = response[key: "items"].ToReadOnlyCollectionOf<CommentBoard>(selector: x => x)
-					, Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: x => x)
-					, Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: x => x)
+					, Items = response[key: "items"].ToListOf<CommentBoard>(selector: x => x)
+					, Profiles = response[key: "profiles"].ToListOf<User>(selector: x => x)
+					, Groups = response[key: "groups"].ToListOf<Group>(selector: x => x)
 			};
 
 			return result;

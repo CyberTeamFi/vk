@@ -38,7 +38,7 @@ namespace VkNet.Model.Template
 			return new MessageTemplate
 			{
 				Type = response[key: "type"],
-				Elements = response[key: "elements"].ToReadOnlyCollectionOf<CarouselElement>(selector: x => x)
+				Elements = response[key: "elements"].ToListOf<CarouselElement>(selector: x => x)
 			};
 		}
 

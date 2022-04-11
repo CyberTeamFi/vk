@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -14,7 +14,7 @@ namespace VkNet.Model
 		/// Массив каталогов
 		/// </summary>
 		[JsonProperty("items")]
-		public ReadOnlyCollection<AudioCatalog> Items { get; set; }
+		public List<AudioCatalog> Items { get; set; }
 
 		/// <summary>
 		///
@@ -26,12 +26,12 @@ namespace VkNet.Model
 		/// Массив профилей
 		/// </summary>
 		[JsonProperty("profiles")]
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Массив групп/сообществ
 		/// </summary>
 		[JsonProperty("groups")]
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public List<Group> Groups { get; set; }
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
@@ -47,22 +48,26 @@ namespace VkNet.Model
 		/// <summary>
 		/// URL изображения-обложки ролика шириной 130px.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo130 { get; set; }
 
 		/// <summary>
 		/// URL изображения-обложки ролика шириной 320px.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo320 { get; set; }
 
 		/// <summary>
 		/// URL изображения-обложки ролика шириной 640px (если размер есть).
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo640 { get; set; }
 
 		/// <summary>
 		/// URL изображения-обложки ролика шириной 800px (если размер есть).
 		/// </summary>
 		[JsonProperty(propertyName: "photo_800")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo800 { get; set; }
 
 		/// <summary>
@@ -112,6 +117,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// URL изображения-обложки альбома с размером 272x150px.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo160 { get; set; }
 
 		/// <summary>

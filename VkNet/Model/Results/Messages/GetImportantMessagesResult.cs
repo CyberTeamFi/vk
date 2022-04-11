@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
@@ -23,12 +23,12 @@ namespace VkNet.Model
 		/// Профили пользователей
 		/// </summary>
 		[JsonProperty("profiles")]
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Беседы
 		/// </summary>
 		[JsonProperty("conversations")]
-		public ReadOnlyCollection<Conversation> Conversations { get; set; }
+		public List<Conversation> Conversations { get; set; }
 	}
 }

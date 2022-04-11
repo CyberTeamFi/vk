@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -24,7 +24,7 @@ namespace VkNet.Model
 		/// Время до следующего обновления в секундах.
 		/// </summary>
 		[JsonProperty("accesses")]
-		public ReadOnlyCollection<OfficeUsersAccesses> Accesses { get; set; }
+		public List<OfficeUsersAccesses> Accesses { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -36,7 +36,7 @@ namespace VkNet.Model
 			return new GetOfficeUsersResult
 			{
 				UserId = response["user_id"],
-				Accesses = response["accesses"].ToReadOnlyCollectionOf<OfficeUsersAccesses>()
+				Accesses = response["accesses"].ToListOf<OfficeUsersAccesses>()
 			};
 		}
 	}

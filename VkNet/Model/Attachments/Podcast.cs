@@ -1,4 +1,5 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -49,6 +50,7 @@ namespace VkNet.Model.Attachments
 		/// <c>Uri</c> на подкаст
 		/// </summary>
 		[JsonProperty("url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Url { get; set; }
 
 		/// <summary>

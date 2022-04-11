@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -77,7 +77,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.getStats
 		/// </remarks>
-		Task<ReadOnlyCollection<StreamingStats>> GetStatsAsync(string type
+		Task<List<StreamingStats>> GetStatsAsync(string type
 																, string interval
 																, DateTime? startTime = null
 																, DateTime? endTime = null);

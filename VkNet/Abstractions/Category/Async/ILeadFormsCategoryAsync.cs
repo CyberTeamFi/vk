@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.LeadForms;
@@ -96,7 +96,7 @@ namespace VkNet.Abstractions.Category.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.getLeads
 		/// </remarks>
-		Task<ReadOnlyCollection<LeadFormsGetLeadResult>> GetLeadsAsync(long groupId, long formId, string nextPageToken, ulong? limit = null);
+		Task<List<LeadFormsGetLeadResult>> GetLeadsAsync(long groupId, long formId, string nextPageToken, ulong? limit = null);
 
 		/// <summary>
 		/// Возвращает URL для загрузки обложки для формы.
@@ -121,7 +121,7 @@ namespace VkNet.Abstractions.Category.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.list
 		/// </remarks>
-		Task<ReadOnlyCollection<LeadFormCreateResult>> ListAsync(long groupId);
+		Task<List<LeadFormCreateResult>> ListAsync(long groupId);
 
 		/// <summary>
 		/// Обновляет форму сбора заявок.

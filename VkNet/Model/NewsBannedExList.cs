@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -14,13 +14,13 @@ namespace VkNet.Model
 		/// В поле groups содержится массив идентификаторов сообществ, которые пользователь
 		/// скрыл из ленты новостей.
 		/// </summary>
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public List<Group> Groups { get; set; }
 
 		/// <summary>
 		/// В поле members содержится массив идентификаторов друзей, которые пользователь
 		/// скрыл из ленты новостей.
 		/// </summary>
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -34,8 +34,8 @@ namespace VkNet.Model
 
 			var bannedList = new NewsBannedExList
 			{
-					Groups = names.ToReadOnlyCollectionOf<Group>(selector: x => x)
-					, Profiles = profiles.ToReadOnlyCollectionOf<User>(selector: x => x)
+					Groups = names.ToListOf<Group>(selector: x => x)
+					, Profiles = profiles.ToListOf<User>(selector: x => x)
 			};
 
 			return bannedList;

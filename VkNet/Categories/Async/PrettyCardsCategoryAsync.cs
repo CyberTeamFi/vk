@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -35,7 +35,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<PrettyCardsGetByIdResult>> GetByIdAsync(PrettyCardsGetByIdParams @params)
+		public Task<List<PrettyCardsGetByIdResult>> GetByIdAsync(PrettyCardsGetByIdParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>GetById(@params: @params));
 		}

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -49,7 +49,7 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public IEnumerable<Order> Get(ulong? offset = null, ulong? count = null, bool? testMode = null)
 		{
-			return _vk.Call<ReadOnlyCollection<Order>>("orders.get",
+			return _vk.Call<List<Order>>("orders.get",
 				new VkParameters
 				{
 					{ "offset", offset },
@@ -61,7 +61,7 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public IEnumerable<VotesAmount> GetAmount(ulong userId, IEnumerable<string> votes)
 		{
-			return _vk.Call<ReadOnlyCollection<VotesAmount>>("orders.getAmount",
+			return _vk.Call<List<VotesAmount>>("orders.getAmount",
 				new VkParameters
 				{
 					{ "user_id", userId },
@@ -72,7 +72,7 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public IEnumerable<Order> GetById(IEnumerable<ulong> orderIds = null, bool? testMode = null)
 		{
-			return _vk.Call<ReadOnlyCollection<Order>>("orders.getById",
+			return _vk.Call<List<Order>>("orders.getById",
 				new VkParameters
 				{
 					{ "order_ids", orderIds },
@@ -90,7 +90,7 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public IEnumerable<SubscriptionItem> GetUserSubscriptions(ulong userId)
 		{
-			return _vk.Call<ReadOnlyCollection<SubscriptionItem>>("orders.getUserSubscriptions", new VkParameters { { "user_id", userId } });
+			return _vk.Call<List<SubscriptionItem>>("orders.getUserSubscriptions", new VkParameters { { "user_id", userId } });
 		}
 
 		/// <inheritdoc/>

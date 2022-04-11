@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
@@ -37,14 +37,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<PageVersion>> GetHistoryAsync(long pageId, long groupId, long? userId = null)
+		public Task<List<PageVersion>> GetHistoryAsync(long pageId, long groupId, long? userId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
 					GetHistory(pageId: pageId, groupId: groupId, userId: userId));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Page>> GetTitlesAsync(long groupId)
+		public Task<List<Page>> GetTitlesAsync(long groupId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>GetTitles(groupId: groupId));
 		}

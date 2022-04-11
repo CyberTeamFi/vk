@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -28,7 +28,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/podcasts.getPopular
 		/// </remarks>
-		Task<ReadOnlyCollection<PodcastsGetPopularResult>> GetPopularAsync();
+		Task<List<PodcastsGetPopularResult>> GetPopularAsync();
 
 		/// <summary>
 		/// Метод редактирует карточку карусели.
@@ -38,7 +38,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/podcasts.getRecentSearchRequests
 		/// </remarks>
-		Task<ReadOnlyCollection<string>> GetRecentSearchRequestsAsync();
+		Task<List<string>> GetRecentSearchRequestsAsync();
 
 		/// <summary>
 		/// Метод возвращает неиспользованные карточки владельца.

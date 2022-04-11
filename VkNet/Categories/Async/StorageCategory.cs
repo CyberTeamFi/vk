@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Utils;
@@ -10,7 +10,7 @@ namespace VkNet.Categories
 	public partial class StorageCategory
 	{
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<StorageObject>> GetAsync(IEnumerable<string> keys = null
+		public Task<List<StorageObject>> GetAsync(IEnumerable<string> keys = null
 																	, ulong? userId = null
 																	, bool? global = null)
 		{
@@ -18,7 +18,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<string>> GetKeysAsync(ulong? userId = null
+		public Task<List<string>> GetKeysAsync(ulong? userId = null
 																	, bool? global = null
 																	, ulong? offset = null
 																	, ulong? count = null)

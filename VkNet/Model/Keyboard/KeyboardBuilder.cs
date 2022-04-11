@@ -202,7 +202,7 @@ namespace VkNet.Model.Keyboard
 			{
 				OneTime = IsOneTime,
 				Inline = IsInline,
-				Buttons = _fullKeyboard.Select(e => e.ToReadOnlyCollection()).ToReadOnlyCollection()
+				Buttons = _fullKeyboard.Select(e => e.ToList()).ToList()
 			};
 		}
 	}

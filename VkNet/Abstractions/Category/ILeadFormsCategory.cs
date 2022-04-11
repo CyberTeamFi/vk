@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Abstractions.Category.Async;
 using VkNet.Model;
 using VkNet.Model.LeadForms;
@@ -19,13 +19,13 @@ namespace VkNet.Abstractions.Category
 		LeadFormCreateResult Get(long groupId, long formId);
 
 		/// <inheritdoc cref="ILeadFormsCategoryAsync.GetLeadsAsync" />
-		ReadOnlyCollection<LeadFormsGetLeadResult> GetLeads(long groupId, long formId, string nextPageToken, ulong? limit = null);
+		List<LeadFormsGetLeadResult> GetLeads(long groupId, long formId, string nextPageToken, ulong? limit = null);
 
 		/// <inheritdoc cref="ILeadFormsCategoryAsync.GetUploadURLAsync" />
 		Uri GetUploadURL();
 
 		/// <inheritdoc cref="ILeadFormsCategoryAsync.ListAsync" />
-		ReadOnlyCollection<LeadFormCreateResult> List(long groupId);
+		List<LeadFormCreateResult> List(long groupId);
 
 		/// <inheritdoc cref="ILeadFormsCategoryAsync.UpdateAsync" />
 		LeadFormCreateResult Update(LeadFormsUpdateParams updateParams);

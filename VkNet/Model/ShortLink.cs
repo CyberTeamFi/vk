@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -22,12 +23,14 @@ namespace VkNet.Model
 		/// Сокращенный URL.
 		/// </summary>
 		[JsonProperty(propertyName: "short_url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri ShortUrl { get; set; }
 
 		/// <summary>
 		/// Оригинальный URL.
 		/// </summary>
 		[JsonProperty(propertyName: "url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Url { get; set; }
 
 		/// <summary>

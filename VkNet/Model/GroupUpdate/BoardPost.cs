@@ -34,7 +34,7 @@ namespace VkNet.Model.GroupUpdate
 				Date = response[key: "date"],
 				Text = response[key: "text"],
 				Likes = response[key: "likes"],
-				Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x),
+				Attachments = response[key: "attachments"].ToListOf<Attachment>(selector: x => x),
 				TopicId = response["topic_id"],
 				TopicOwnerId = response["topic_owner_id"]
 			};

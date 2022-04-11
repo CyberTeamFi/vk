@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
@@ -44,7 +44,7 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty(propertyName: "attachments")]
 		[JsonConverter(converterType: typeof(AttachmentJsonConverter))]
-		public ReadOnlyCollection<Attachment> Attachments { get; set; }
+		public List<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Информация об отметках «Мне нравится» текущего комментария (если был задан
@@ -69,7 +69,7 @@ namespace VkNet.Model
 					, Date = response[key: "date"]
 					, Text = response[key: "text"]
 					, Likes = response[key: "likes"]
-					, Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x)
+					, Attachments = response[key: "attachments"].ToListOf<Attachment>(selector: x => x)
 			};
 		}
 

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -97,7 +97,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/polls.getBackgrounds
 		/// </remarks>
-		Task<ReadOnlyCollection<GetBackgroundsResult>> GetBackgroundsAsync();
+		Task<List<GetBackgroundsResult>> GetBackgroundsAsync();
 
 		/// <summary>
 		/// Получает адрес сервера для загрузки фоновой фотографии в опрос.

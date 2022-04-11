@@ -1,4 +1,5 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -38,6 +39,7 @@ namespace VkNet.Model.Keyboard
 		/// Ссылка, которую необходимо открыть по нажатию на кнопку.
 		/// </summary>
 		[JsonProperty("link", NullValueHandling = NullValueHandling.Ignore)]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Link { get; set; }
 
 		/// <summary>

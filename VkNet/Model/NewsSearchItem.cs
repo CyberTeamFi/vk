@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
@@ -67,7 +67,7 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("attachments")]
 		[JsonConverter(typeof(AttachmentJsonConverter))]
-		public ReadOnlyCollection<Attachment> Attachments { get; set; }
+		public List<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Находится в записях со стен, в которых имеется информация о местоположении.
@@ -103,13 +103,13 @@ namespace VkNet.Model
 		/// массив profiles
 		/// </summary>
 		[JsonProperty("profiles")]
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// массив groups
 		/// </summary>
 		[JsonProperty("groups")]
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public List<Group> Groups { get; set; }
 
 		/// <summary>
 		/// Информация информацию о том, каким образом (через интерфейс сайта, виджет и

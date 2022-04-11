@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -24,7 +24,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Document>> GetByIdAsync(IEnumerable<Document> docs)
+		public Task<List<Document>> GetByIdAsync(IEnumerable<Document> docs)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => GetById(docs: docs));
 		}
@@ -42,14 +42,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null)
+		public Task<List<Attachment>> SaveAsync(string file, string title, string tags = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => Save(file, title, tags));
 		}
 
 		/// <inheritdoc />
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-		public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file
+		public Task<List<Attachment>> SaveAsync(string file
 															, string title
 															, string tags = null
 															, long? captchaSid = null

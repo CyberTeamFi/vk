@@ -36,7 +36,7 @@ namespace VkNet.Model
 			{
 				Id = response[key: "id"],
 				Name = response[key: "name"],
-				Subcategories = response[key: "subcategories"].ToReadOnlyCollectionOf<AdsCategories>(selector: x => x)
+				Subcategories = response[key: "subcategories"].ToListOf<AdsCategories>(selector: x => x)
 			};
 		}
 	}

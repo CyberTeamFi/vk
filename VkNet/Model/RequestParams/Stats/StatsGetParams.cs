@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
@@ -63,7 +63,7 @@ namespace VkNet.Model
 		///
 		/// </summary>
 		[JsonProperty("filters")]
-		public ReadOnlyCollection<string> Filters { get; set; }
+		public List<string> Filters { get; set; }
 
 		/// <summary>
 		/// Фильтр для получения данных по конкретному блоку статистики сообщества.

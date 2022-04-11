@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -21,7 +21,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Языки, на которых говорит пользователь.
 		/// </summary>
-		public ReadOnlyCollection<string> Languages { get; set; }
+		public List<string> Languages { get; set; }
 
 		/// <summary>
 		/// Мировоззрение пользователя.
@@ -65,7 +65,7 @@ namespace VkNet.Model
 			var standInLife = new StandInLife
 			{
 					Political = response[key: "political"]
-					, Languages = response[key: "langs"].ToReadOnlyCollectionOf<string>(selector: x => x)
+					, Languages = response[key: "langs"].ToListOf<string>(selector: x => x)
 					, Religion = response[key: "religion"]
 					, InspiredBy = response[key: "inspired_by"]
 					, PeopleMain = response[key: "people_main"]

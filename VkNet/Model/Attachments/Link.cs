@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Amazon.DynamoDBv2.DataModel;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -23,6 +24,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Адрес ссылки.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Uri { get; set; }
 
 		/// <summary>
@@ -65,6 +67,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Адрес страницы для предпросмотра содержимого страницы.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri PreviewUrl { get; set; }
 
 		/// <summary>

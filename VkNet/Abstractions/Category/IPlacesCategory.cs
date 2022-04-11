@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -16,13 +16,13 @@ namespace VkNet.Abstractions
 		long Checkin(PlacesCheckinParams placesCheckinParams);
 
 		/// <inheritdoc cref="IPlacesCategoryAsync.GetByIdAsync"/>
-		ReadOnlyCollection<Place> GetById(IEnumerable<ulong> places);
+		List<Place> GetById(IEnumerable<ulong> places);
 
 		/// <inheritdoc cref="IPlacesCategoryAsync.GetCheckinsAsync"/>
 		VkCollection<Checkin> GetCheckins(PlacesGetCheckinsParams placesGetCheckinsParams);
 
 		/// <inheritdoc cref="IPlacesCategoryAsync.GetTypesAsync"/>
-		ReadOnlyCollection<PlaceType> GetTypes();
+		List<PlaceType> GetTypes();
 
 		/// <inheritdoc cref="IPlacesCategoryAsync.SearchAsync"/>
 		VkCollection<Place> Search(PlacesSearchParams placesSearchParams);

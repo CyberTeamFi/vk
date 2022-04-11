@@ -47,9 +47,9 @@ namespace VkNet.Model
 			return new ChatPreview
 			{
 					Preview = response[key: "preview"]
-					, Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: x => x)
-					, Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: x => x)
-					, Emails = response[key: "emails"].ToReadOnlyCollectionOf<Email>(selector: x => x)
+					, Profiles = response[key: "profiles"].ToListOf<User>(selector: x => x)
+					, Groups = response[key: "groups"].ToListOf<Group>(selector: x => x)
+					, Emails = response[key: "emails"].ToListOf<Email>(selector: x => x)
 			};
 		}
 

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
@@ -67,7 +67,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getStreetsById
 		/// </remarks>
-		Task<ReadOnlyCollection<Street>> GetStreetsByIdAsync(params int[] streetIds);
+		Task<List<Street>> GetStreetsByIdAsync(params int[] streetIds);
 
 		/// <summary>
 		/// Возвращает информацию о странах по их идентификаторам.
@@ -77,7 +77,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getCountriesById
 		/// </remarks>
-		Task<ReadOnlyCollection<Country>> GetCountriesByIdAsync(params int[] countryIds);
+		Task<List<Country>> GetCountriesByIdAsync(params int[] countryIds);
 
 		/// <summary>
 		/// Возвращает список городов.
@@ -109,7 +109,7 @@ namespace VkNet.Abstractions
 		/// places.getById, places.search, places.getCheckins.
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getCitiesById
 		/// </remarks>
-		Task<ReadOnlyCollection<City>> GetCitiesByIdAsync(params int[] cityIds);
+		Task<List<City>> GetCitiesByIdAsync(params int[] cityIds);
 
 		/// <summary>
 		/// Возвращает список высших учебных заведений.
@@ -184,7 +184,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getSchoolClasses
 		/// </remarks>
-		Task<ReadOnlyCollection<SchoolClass>> GetSchoolClassesAsync(long countryId);
+		Task<List<SchoolClass>> GetSchoolClassesAsync(long countryId);
 
 		/// <summary>
 		/// Возвращает список кафедр университета по указанному факультету.
@@ -223,7 +223,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getMetroStationsById
 		/// </remarks>
-		Task<ReadOnlyCollection<MetroStation>> GetMetroStationsByIdAsync(IEnumerable<ulong> stationIds);
+		Task<List<MetroStation>> GetMetroStationsByIdAsync(IEnumerable<ulong> stationIds);
 
 		/// <summary>
 		/// Возвращает список станций метро

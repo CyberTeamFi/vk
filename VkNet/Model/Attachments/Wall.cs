@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -98,7 +98,7 @@ namespace VkNet.Model.Attachments
 		/// Информация о вложениях записи (фотографии ссылки и т.п.).
 		/// </summary>
 		[JsonConverter(typeof(AttachmentJsonConverter))]
-		public ReadOnlyCollection<Attachment> Attachments { get; set; }
+		public List<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Информация о местоположении.
@@ -115,7 +115,7 @@ namespace VkNet.Model.Attachments
 		/// Массив, содержащий историю репостов для записи. Возвращается только в том
 		/// случае, если запись является репостом.
 		/// </summary>
-		public ReadOnlyCollection<Post> CopyHistory { get; set; }
+		public List<Post> CopyHistory { get; set; }
 
 		/// <summary>
 		/// Информация о том, может ли текущий пользователь закрепить запись (1 — может, 0
@@ -172,7 +172,7 @@ namespace VkNet.Model.Attachments
 				Reposts = response["reposts"],
 				PostType = response["post_type"],
 				PostSource = response["post_source"],
-				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
+				Attachments = response["attachments"].ToListOf<Attachment>(x => x),
 				Geo = response["geo"],
 				SignerId = response["signer_id"],
 				CopyPostDate = response["copy_post_date"],
@@ -180,7 +180,7 @@ namespace VkNet.Model.Attachments
 				CopyOwnerId = response["copy_owner_id"],
 				CopyPostId = response["copy_post_id"],
 				CopyText = response["copy_text"],
-				CopyHistory = response["copy_history"].ToReadOnlyCollectionOf<Post>(x => x),
+				CopyHistory = response["copy_history"].ToListOf<Post>(x => x),
 				IsPinned = response["is_pinned"],
 				CreatedBy = response["created_by"],
 				CopyCommenterId = response["copy_commenter_id"],

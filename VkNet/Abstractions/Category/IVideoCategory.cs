@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -87,10 +87,10 @@ namespace VkNet.Abstractions
 		VkCollection<VideoAlbum> GetAlbumsByVideo(long? targetId, long ownerId, long videoId, bool? extended);
 
 		/// <inheritdoc cref="IVideoCategoryAsync.GetCatalogAsync"/>
-		ReadOnlyCollection<VideoCatalog> GetCatalog(VideoGetCatalogParams @params);
+		List<VideoCatalog> GetCatalog(VideoGetCatalogParams @params);
 
 		/// <inheritdoc cref="IVideoCategoryAsync.GetCatalogSectionAsync"/>
-		ReadOnlyCollection<VideoCatalogItem> GetCatalogSection(string sectionId, string from, long? count = null, bool? extended = null);
+		List<VideoCatalogItem> GetCatalogSection(string sectionId, string from, long? count = null, bool? extended = null);
 
 		/// <inheritdoc cref="IVideoCategoryAsync.HideCatalogSectionAsync"/>
 		bool HideCatalogSection(long sectionId);

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -94,13 +94,13 @@ namespace VkNet.Model
 		/// Главные исполнители.
 		/// </summary>
 		[JsonProperty("main_artists")]
-		public ReadOnlyCollection<AudioArtist> MainArtists { get; set; }
+		public List<AudioArtist> MainArtists { get; set; }
 
 		/// <summary>
 		/// Вторичные исполнители.
 		/// </summary>
 		[JsonProperty("featured_artists")]
-		public ReadOnlyCollection<AudioArtist> FeaturedArtists { get; set; }
+		public List<AudioArtist> FeaturedArtists { get; set; }
 
 		/// <summary>
 		/// Разрешены ли истории.

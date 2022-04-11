@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -21,7 +21,7 @@ namespace VkNet.Model
 		/// Идентификаторы общих друзей
 		/// </summary>
 		[JsonProperty("common_friends")]
-		public ReadOnlyCollection<ulong> CommonFriends { get; set; }
+		public List<ulong> CommonFriends { get; set; }
 
 		/// <summary>
 		/// Количество общих друзей
@@ -39,7 +39,7 @@ namespace VkNet.Model
 			return new MutualFriend
 			{
 				Id = response["id"],
-				CommonFriends = response["common_friends"].ToReadOnlyCollectionOf<ulong>(x => x),
+				CommonFriends = response["common_friends"].ToListOf<ulong>(x => x),
 				CommonCount = response["common_count"]
 			};
 		}

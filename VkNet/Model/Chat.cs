@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Utils;
 
@@ -35,7 +35,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Список идентификаторов участников беседы.
 		/// </summary>
-		public ReadOnlyCollection<long> Users { get; set; }
+		public List<long> Users { get; set; }
 
 		/// <summary>
 		/// Настройки оповещений для диалога..
@@ -83,7 +83,7 @@ namespace VkNet.Model
 					, Type = response[key: "type"]
 					, Title = response[key: "title"]
 					, AdminId = Utilities.GetNullableLongId(response: response[key: "admin_id"])
-					, Users = response[key: "users"].ToReadOnlyCollectionOf<long>(selector: x => x)
+					, Users = response[key: "users"].ToListOf<long>(selector: x => x)
 					, Left = response.ContainsKey(key: "left") && response[key: "left"]
 					, Kicked = response[key: "kicked"]
 					, Photo50 = response[key: "photo_50"]

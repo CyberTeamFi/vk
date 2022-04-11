@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Model;
 
 namespace VkNet.Exception
@@ -27,7 +27,7 @@ namespace VkNet.Exception
 		/// <summary>
 		/// Параметры запроса
 		/// </summary>
-		public new ReadOnlyCollection<RequestParam> RequestParams => _error.RequestParams;
+		public new List<RequestParam> RequestParams => _error.RequestParams;
 
 		/// <inheritdoc />
 		public override string Message => _error.ErrorMessage;

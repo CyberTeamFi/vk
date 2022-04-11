@@ -1,4 +1,5 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -14,36 +15,43 @@ namespace VkNet.Model
 		/// <summary>
 		/// Uri ���������� ����������, ������� ������ 50 ��������.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
 		/// Uri ���������� ����������, ������� ������ 100 ��������.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
 		/// Uri ���������� ����������, ������� ������ 130 ��������.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo130 { get; set; }
 
 		/// <summary>
 		/// Uri ���������� ����������, ������� ������ 200 ��������.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo200 { get; set; }
 
 		/// <summary>
 		/// Uri ���������� ����������, ������� ������ 400 ��������.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo400 { get; set; }
 
 		/// <summary>
 		/// Uri ���������� ����������, ������� ������������ ������.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri PhotoMax { get; set; }
 
 		/// <summary>
 		/// Gets or sets the photo.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Photo Photo { get; set; }
 
 	#region ������

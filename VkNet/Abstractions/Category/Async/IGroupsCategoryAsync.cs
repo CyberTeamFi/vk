@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -98,7 +98,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getById
 		/// </remarks>
-		Task<ReadOnlyCollection<Group>> GetByIdAsync(IEnumerable<string> groupIds, string groupId, GroupsFields fields,
+		Task<List<Group>> GetByIdAsync(IEnumerable<string> groupIds, string groupId, GroupsFields fields,
 													bool skipAuthorization = false);
 
 		/// <summary>
@@ -163,7 +163,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
 		/// </remarks>
-		Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
+		Task<List<GroupMember>> IsMemberAsync(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
 															bool skipAuthorization = false);
 
 		/// <summary>

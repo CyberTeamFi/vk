@@ -42,7 +42,7 @@ namespace VkNet.Model.Keyboard
 				OneTime = response[key: "one_time"],
 				Inline = response[key: "inline"],
 				Buttons = response[key: "buttons"]
-					.ToReadOnlyCollectionOf(x => x.ToReadOnlyCollectionOf<MessageKeyboardButton>(y => y))
+					.ToListOf(x => x.ToListOf<MessageKeyboardButton>(y => y))
 			};
 		}
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -16,12 +17,14 @@ namespace VkNet.Model
 		/// Uri копии изображения.
 		/// </summary>
 		[JsonProperty("src")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Src { get; set; }
 
 		/// <summary>
 		/// Uri копии изображения.
 		/// </summary>
 		[JsonProperty("url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Url { get; set; }
 
 		/// <summary>
@@ -41,6 +44,7 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("type")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		[DynamoDBProperty(typeof(DynamoSafetyEnumConverter<PhotoSizeType>))]
 		public PhotoSizeType Type { get; set; }
 
 		/// <summary>

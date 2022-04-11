@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -13,31 +14,37 @@ namespace VkNet.Model
 		/// <summary>
 		/// Uri ролика с размером 320x240px.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Mp4_240 { get; set; }
 
 		/// <summary>
 		/// Uri ролика с размером 640x360px.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Mp4_360 { get; set; }
 
 		/// <summary>
 		/// Uri ролика с размером 640x480px.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Mp4_480 { get; set; }
 
 		/// <summary>
 		/// Uri ролика с размером 1280x720px.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Mp4_720 { get; set; }
 
 		/// <summary>
 		/// Uri ролика с размером 1920х1080px.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Mp4_1080 { get; set; }
 
 		/// <summary>
 		/// Внешняя ссылка (например для видео из Youtube)
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri External { get; set; }
 
 		/// <summary>
@@ -46,24 +53,28 @@ namespace VkNet.Model
 		/// Содержит файл в формате .m3u8 (MPEG-2 TS)
 		/// </remarks>
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Hls { get; set; }
 
 		/// <summary>
 		/// Ссылка на MPEG-DASH плейлист(тип 2)
 		/// </summary>
 		[JsonProperty("dash_uni")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri DashUni { get; set; }
 
 		/// <summary>
 		/// Ссылка на MPEG-DASH плейлист(тип 1)
 		/// </summary>
 		[JsonProperty("dash_sep")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri DashSep { get; set; }
 
 		/// <summary>
 		/// Ссылка на MPEG-DASH плейлист(тип 4) (video/webm)
 		/// </summary>
 		[JsonProperty("dash_webm")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri DashWebm { get; set; }
 
 		/// <summary>
@@ -73,6 +84,7 @@ namespace VkNet.Model
 		/// </remarks>
 		/// </summary>
 		[JsonProperty("hls_ondemand")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri HlsOnDemand { get; set; }
 
 		/// <summary>
@@ -82,6 +94,7 @@ namespace VkNet.Model
 		/// </remarks>
 		/// </summary>
 		[JsonProperty("dash_ondemand")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri DashOnDemand { get; set; }
 
 	#region Live Uris
@@ -93,6 +106,7 @@ namespace VkNet.Model
 		/// </remarks>
 		/// </summary>
 		[JsonProperty("hls_live_playback")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri HlsLivePlayback { get; set; }
 
 		/// <summary>
@@ -102,6 +116,7 @@ namespace VkNet.Model
 		/// </remarks>
 		/// </summary>
 		[JsonProperty("dash_live_playback")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri DashLivePlayback { get; set; }
 
 	#endregion

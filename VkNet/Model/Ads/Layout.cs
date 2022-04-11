@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Utils;
@@ -69,54 +70,63 @@ namespace VkNet.Model
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("link_url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri LinkUrl { get; set; }
 
 		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("link_domain")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri LinkDomain { get; set; }
 
 		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("link_title")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri LinkTitle { get; set; }
 
 		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("link_button")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri LinkButton { get; set; }
 
 		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("preview_link")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri PreviewLink { get; set; }
 
 		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("image_src")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri ImageSrc { get; set; }
 
 		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("image_src_2x")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri ImageSrc2X { get; set; }
 
 		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("icon_src")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri IconSrc { get; set; }
 
 		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("icon_src_2x")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri IconSrc2X { get; set; }
 
 		/// <summary>

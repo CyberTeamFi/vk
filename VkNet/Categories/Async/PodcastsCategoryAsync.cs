@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -17,13 +17,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<PodcastsGetPopularResult>> GetPopularAsync()
+		public Task<List<PodcastsGetPopularResult>> GetPopularAsync()
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: GetPopular);
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<string>> GetRecentSearchRequestsAsync()
+		public Task<List<string>> GetRecentSearchRequestsAsync()
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: GetRecentSearchRequests);
 		}

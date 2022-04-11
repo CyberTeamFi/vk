@@ -1,5 +1,6 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -26,18 +27,20 @@ namespace VkNet.Model.Attachments
 		/// Форма волны
 		/// </summary>
 		[JsonProperty("waveform")]
-		public ReadOnlyCollection<int> Waveform { get; set; }
+		public List<int> Waveform { get; set; }
 
 		/// <summary>
 		/// Ссылка на файл в ogg
 		/// </summary>
 		[JsonProperty("link_ogg")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri LinkOgg { get; set; }
 
 		/// <summary>
 		/// Ссылка на файл в mp3
 		/// </summary>
 		[JsonProperty("link_mp3")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri LinkMp3 { get; set; }
 
 		/// <summary>
@@ -65,7 +68,7 @@ namespace VkNet.Model.Attachments
 				Id = response["id"],
 				OwnerId = response["owner_id"],
 				Duration = response["duration"],
-				Waveform = response["waveform"].ToReadOnlyCollectionOf<int>(x => x),
+				Waveform = response["waveform"].ToListOf<int>(x => x),
 				LinkOgg = response["link_ogg"],
 				LinkMp3 = response["link_mp3"],
 				AccessKey = response["access_key"],

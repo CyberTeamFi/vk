@@ -178,7 +178,9 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator long?(VkResponse response)
 		{
-			return response != null ? (long?) response._token : null;
+			if (response != null && long.TryParse(response._token.Value<string>(), out var value))
+				return value;
+			return null;
 		}
 
 		/// <summary>

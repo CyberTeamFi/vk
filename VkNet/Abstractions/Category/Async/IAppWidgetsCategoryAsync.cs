@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -117,7 +117,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getImagesById
 		/// </remarks>
-		Task<ReadOnlyCollection<AppImage>> GetImagesByIdAsync(string images);
+		Task<List<AppImage>> GetImagesByIdAsync(string images);
 
 		/// <summary>
 		/// Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.

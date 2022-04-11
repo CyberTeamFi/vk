@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Utils;
@@ -101,7 +101,7 @@ namespace VkNet.Model.RequestParams
 		/// Список возможных категорий для публичных страниц.
 		/// </summary>
 		[JsonProperty("public_category_list")]
-		public ReadOnlyCollection<long> PublicCategoryList { get; set; }
+		public List<long> PublicCategoryList { get; set; }
 
 		/// <summary>
 		/// Тип группы.
@@ -296,12 +296,12 @@ namespace VkNet.Model.RequestParams
 				Messages = response["messages"],
 				ObsceneFilter = response["obscene_filter"],
 				ObsceneStopwords = response["obscene_stopwords"],
-				ObsceneWords = response["obscene_words"].ToReadOnlyCollectionOf<string>(o => o),
+				ObsceneWords = response["obscene_words"].ToListOf<string>(o => o),
 				PublicCategory = response["public_category"],
-				PublicCategoryList = response["public_category_list"].ToReadOnlyCollectionOf<long>(x =>x),
+				PublicCategoryList = response["public_category_list"].ToListOf<long>(x =>x),
 				Access = response["access"],
 				Subject = response["subject"],
-				SubjectList = response["subject_list"].ToReadOnlyCollectionOf<SubjectListItem>(x => x),
+				SubjectList = response["subject_list"].ToListOf<SubjectListItem>(x => x),
 				Rss = response["rss"],
 				Website = response["website"],
 				AgeLimits = response["age_limits"],
@@ -335,8 +335,8 @@ namespace VkNet.Model.RequestParams
 			{
 				res.MarketEnabled = market["enabled"];
 				res.MarketCommentsEnabled = market["comments_enabled"];
-				res.MarketCountry = market["country_ids"].ToReadOnlyCollectionOf<ulong>(o => o);
-				res.MarketCity = market["city_ids"].ToReadOnlyCollectionOf<ulong>(o => o);
+				res.MarketCountry = market["country_ids"].ToListOf<ulong>(o => o);
+				res.MarketCity = market["city_ids"].ToListOf<ulong>(o => o);
 				res.MarketContact = market["contact_id"];
 				res.MarketCurrency = market["currency"];
 			} else
@@ -344,8 +344,8 @@ namespace VkNet.Model.RequestParams
 				// Older version
 				res.MarketEnabled = response["market"];
 				res.MarketCommentsEnabled = response["market_comments"];
-				res.MarketCountry = response["market_country"].ToReadOnlyCollectionOf<ulong>(o => o);
-				res.MarketCity = response["market_city"].ToReadOnlyCollectionOf<ulong>(o => o);
+				res.MarketCountry = response["market_country"].ToListOf<ulong>(o => o);
+				res.MarketCity = response["market_city"].ToListOf<ulong>(o => o);
 				res.MarketCurrency = response["market_currency"];
 				res.MarketContact = response["market_contact"];
 			#pragma warning disable CS0618 // Тип или член устарел

@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -18,6 +19,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Ссылка на которую ведет кнопка.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Uri { get; set; }
 
 		/// <summary>

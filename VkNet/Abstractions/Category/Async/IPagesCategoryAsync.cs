@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
@@ -91,7 +91,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/pages.getHistory
 		/// </remarks>
-		Task<ReadOnlyCollection<PageVersion>> GetHistoryAsync(long pageId, long groupId, long? userId = null);
+		Task<List<PageVersion>> GetHistoryAsync(long pageId, long groupId, long? userId = null);
 
 		/// <summary>
 		/// Возвращает список вики-страниц в группе.
@@ -106,7 +106,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/pages.getTitles
 		/// </remarks>
-		Task<ReadOnlyCollection<Page>> GetTitlesAsync(long groupId);
+		Task<List<Page>> GetTitlesAsync(long groupId);
 
 		/// <summary>
 		/// Возвращает текст одной из старых версий страницы.

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -25,7 +25,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<User>> GetAsync(IEnumerable<long> userIds
+		public Task<List<User>> GetAsync(IEnumerable<long> userIds
 															, ProfileFields fields = null
 															, NameCase nameCase = null)
 		{
@@ -34,7 +34,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<User>> GetAsync(IEnumerable<string> screenNames
+		public Task<List<User>> GetAsync(IEnumerable<string> screenNames
 															, ProfileFields fields = null
 															, NameCase nameCase = null)
 		{

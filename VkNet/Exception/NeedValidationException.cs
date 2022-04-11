@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -34,6 +35,7 @@ namespace VkNet.Exception
 		/// <summary>
 		/// Адрес который необходимо открыть в браузере.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri RedirectUri { get; }
 	}
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
@@ -61,24 +61,24 @@ namespace VkNet.Model
 		/// Аудиозаписи.
 		/// </summary>
 		[JsonProperty("audios")]
-		public ReadOnlyCollection<AudioCatalogAudio> Audios { get; set; }
+		public List<AudioCatalogAudio> Audios { get; set; }
 
 		/// <summary>
 		/// Обложки.
 		/// </summary>
 		[JsonProperty("thumbs")]
-		public ReadOnlyCollection<AudioCover> Thumbs { get; set; }
+		public List<AudioCover> Thumbs { get; set; }
 
 		/// <summary>
 		/// Плейлисты.
 		/// </summary>
 		[JsonProperty("playlists")]
-		public ReadOnlyCollection<AudioPlaylist> Playlists { get; set; }
+		public List<AudioPlaylist> Playlists { get; set; }
 
 		/// <summary>
 		/// Ссылка на аудиозаписи друзей/сообщества.
 		/// </summary>
 		[JsonProperty("items")]
-		public ReadOnlyCollection<AudioCatalogItem> Items { get; set; }
+		public List<AudioCatalogItem> Items { get; set; }
 	}
 }

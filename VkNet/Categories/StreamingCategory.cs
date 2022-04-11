@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -39,12 +39,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<StreamingStats> GetStats(string type
+		public List<StreamingStats> GetStats(string type
 															, string interval
 															, DateTime? startTime = null
 															, DateTime? endTime = null)
 		{
-			var result = _vk.Call<ReadOnlyCollection<StreamingStats>>(methodName: "streaming.getStats"
+			var result = _vk.Call<List<StreamingStats>>(methodName: "streaming.getStats"
 					, parameters: new VkParameters
 					{
 							{ "type", type }

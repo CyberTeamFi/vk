@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -29,7 +29,7 @@ namespace VkNet.Abstractions
 		Poll Create(PollsCreateParams @params);
 
 		/// <inheritdoc cref="IPollsCategoryAsync.GetBackgroundsAsync"/>
-		ReadOnlyCollection<GetBackgroundsResult> GetBackgrounds();
+		List<GetBackgroundsResult> GetBackgrounds();
 
 		/// <inheritdoc cref="IPollsCategoryAsync.GetPhotoUploadServerAsync"/>
 		PhotoUploadServer GetPhotoUploadServer(long ownerId);

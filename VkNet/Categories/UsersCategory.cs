@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -84,7 +84,7 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public ReadOnlyCollection<User> Get(IEnumerable<long> userIds
+		public List<User> Get(IEnumerable<long> userIds
 											, ProfileFields fields = null
 											, NameCase nameCase = null)
 		{
@@ -102,14 +102,14 @@ namespace VkNet.Categories
 
 			VkResponseArray response = _vk.Call(methodName: "users.get", parameters: parameters);
 
-			return response.ToReadOnlyCollectionOf<User>(selector: x => x);
+			return response.ToListOf<User>(selector: x => x);
 		}
 
 		/// <inheritdoc />
 		[Pure]
 		[NotNull]
 		[ContractAnnotation(contract: "screenNames:null => halt")]
-		public ReadOnlyCollection<User> Get(IEnumerable<string> screenNames
+		public List<User> Get(IEnumerable<string> screenNames
 											, ProfileFields fields = null
 											, NameCase nameCase = null)
 		{
@@ -127,7 +127,7 @@ namespace VkNet.Categories
 
 			VkResponseArray response = _vk.Call(methodName: "users.get", parameters: parameters);
 
-			return response.ToReadOnlyCollectionOf<User>(selector: x => x);
+			return response.ToListOf<User>(selector: x => x);
 		}
 
 		/// <inheritdoc />

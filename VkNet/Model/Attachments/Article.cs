@@ -1,4 +1,5 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -24,6 +25,7 @@ namespace VkNet.Model.Attachments
 		/// <c>Uri</c> к фотографии владельца
 		/// </summary>
 		[JsonProperty("owner_photo")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri OwnerPhoto { get; set; }
 
 		/// <summary>
@@ -72,11 +74,13 @@ namespace VkNet.Model.Attachments
 		/// Ссылка на статью
 		/// </summary>
 		[JsonProperty("url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Url { get; set; }
 
 		/// <summary>
 		/// </summary>
 		[JsonProperty("view_url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri ViewUrl { get; set; }
 
 		/// <summary>

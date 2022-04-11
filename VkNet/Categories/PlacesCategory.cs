@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -58,9 +58,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Place> GetById(IEnumerable<ulong> places)
+		public List<Place> GetById(IEnumerable<ulong> places)
 		{
-			return _vk.Call<ReadOnlyCollection<Place>>(methodName: "places.getById", parameters: new VkParameters { { "places", places } });
+			return _vk.Call<List<Place>>(methodName: "places.getById", parameters: new VkParameters { { "places", places } });
 		}
 
 		/// <inheritdoc />
@@ -82,9 +82,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<PlaceType> GetTypes()
+		public List<PlaceType> GetTypes()
 		{
-			return _vk.Call<ReadOnlyCollection<PlaceType>>(methodName: "places.getTypes", parameters: VkParameters.Empty);
+			return _vk.Call<List<PlaceType>>(methodName: "places.getTypes", parameters: VkParameters.Empty);
 		}
 
 		/// <inheritdoc />

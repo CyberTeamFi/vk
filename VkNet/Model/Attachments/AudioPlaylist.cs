@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
@@ -46,7 +46,7 @@ namespace VkNet.Model.Attachments
 		/// Список жанров плейлиста.
 		/// </summary>
 		[JsonProperty("genres")]
-		public ReadOnlyCollection<AudioPlaylistGenre> Genres { get; set; }
+		public List<AudioPlaylistGenre> Genres { get; set; }
 
 		/// <summary>
 		/// Количество аудиозаписей в плейлисте.
@@ -114,13 +114,13 @@ namespace VkNet.Model.Attachments
 		/// Миниатюры плейлиста.
 		/// </summary>
 		[JsonProperty("thumbs")]
-		public ReadOnlyCollection<AudioCover> Thumbs { get; set; }
+		public List<AudioCover> Thumbs { get; set; }
 
 		/// <summary>
 		/// Неизвестно.
 		/// </summary>
 		[JsonProperty("display_owner_ids")]
-		public ReadOnlyCollection<long> OwnerIds { get; set; }
+		public List<long> OwnerIds { get; set; }
 
 		/// <summary>
 		/// Главный исполнитель.
@@ -134,19 +134,19 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[Obsolete("Use MainArtists property instead.")]
 		[JsonProperty("artists")]
-		public ReadOnlyCollection<AudioArtist> Artists { get; set; }
+		public List<AudioArtist> Artists { get; set; }
 
 		/// <summary>
 		/// Список исполнителей.
 		/// </summary>
 		[JsonProperty("main_artists")]
-		public ReadOnlyCollection<AudioArtist> MainArtists { get; set; }
+		public List<AudioArtist> MainArtists { get; set; }
 
 		/// <summary>
 		/// Список исполнителей.
 		/// </summary>
 		[JsonProperty("featured_artists")]
-		public ReadOnlyCollection<AudioArtist> FeaturedArtists { get; set; }
+		public List<AudioArtist> FeaturedArtists { get; set; }
 
 		/// <summary>
 		/// Являетя ли откровенным контентом.
@@ -170,7 +170,7 @@ namespace VkNet.Model.Attachments
 				Type = response["type"],
 				Title = response["title"],
 				Description = response["description"],
-				Genres = response["genres"].ToReadOnlyCollectionOf<AudioPlaylistGenre>(x => x),
+				Genres = response["genres"].ToListOf<AudioPlaylistGenre>(x => x),
 				Count = response["count"],
 				IsFollowing = response["is_following"],
 				Followers = response["followers"],
@@ -181,12 +181,12 @@ namespace VkNet.Model.Attachments
 				Original = response["original"],
 				Follower = response["followed"],
 				Photo = response["photo"],
-				Thumbs = response["thumbs"].ToReadOnlyCollectionOf<AudioCover>(x => x),
-				OwnerIds = response["display_owner_ids"].ToReadOnlyCollectionOf<long>(x => x),
+				Thumbs = response["thumbs"].ToListOf<AudioCover>(x => x),
+				OwnerIds = response["display_owner_ids"].ToListOf<long>(x => x),
 				MainArtist = response["main_artist"],
-				Artists = response["artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
-				MainArtists = response["main_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
-				FeaturedArtists = response["featured_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
+				Artists = response["artists"].ToListOf<AudioArtist>(x => x),
+				MainArtists = response["main_artists"].ToListOf<AudioArtist>(x => x),
+				FeaturedArtists = response["featured_artists"].ToListOf<AudioArtist>(x => x),
 				AccessKey = response["access_key"],
 				IsExplicit = response["is_explicit"]
 			};

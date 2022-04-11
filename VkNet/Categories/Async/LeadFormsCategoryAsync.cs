@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.LeadForms;
@@ -29,7 +29,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<LeadFormsGetLeadResult>> GetLeadsAsync(long groupId, long formId, string nextPageToken, ulong? limit = null)
+		public Task<List<LeadFormsGetLeadResult>> GetLeadsAsync(long groupId, long formId, string nextPageToken, ulong? limit = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetLeads(groupId, formId, nextPageToken, limit));
 		}
@@ -41,7 +41,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<LeadFormCreateResult>> ListAsync(long groupId)
+		public Task<List<LeadFormCreateResult>> ListAsync(long groupId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => List(groupId));
 		}

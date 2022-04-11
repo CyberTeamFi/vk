@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -47,6 +48,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Адрес страницы для отображения заметки.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri ViewUrl { get; set; }
 
 	#region Методы

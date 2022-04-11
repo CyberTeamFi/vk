@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
@@ -23,6 +23,6 @@ namespace VkNet.Model
 		/// Значения статистики
 		/// </summary>
 		[JsonProperty(propertyName: "stats")]
-		public ReadOnlyCollection<StreamingStatsItem> Stats { get; set; }
+		public List<StreamingStatsItem> Stats { get; set; }
 	}
 }

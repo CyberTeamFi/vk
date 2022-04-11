@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -25,7 +25,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.addOfficeUsers
 		/// </remarks>
-		Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AdsDataSpecificationParams<UserSpecification> adsDataSpecification);
+		Task<List<bool>> AddOfficeUsersAsync(AdsDataSpecificationParams<UserSpecification> adsDataSpecification);
 
 		/// <summary>
 		/// Проверяет ссылку на рекламируемый объект.
@@ -55,7 +55,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createAds
 		/// </remarks>
-		Task<ReadOnlyCollection<CreateAdsResult>> CreateAdsAsync(AdsDataSpecificationParams<AdSpecification> adsDataSpecification);
+		Task<List<CreateAdsResult>> CreateAdsAsync(AdsDataSpecificationParams<AdSpecification> adsDataSpecification);
 
 		/// <summary>
 		/// Создает рекламные кампании.
@@ -67,7 +67,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createCampaigns
 		/// </remarks>
-		Task<ReadOnlyCollection<CreateCampaignResult>> CreateCampaignsAsync(AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification);
+		Task<List<CreateCampaignResult>> CreateCampaignsAsync(AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification);
 
 		/// <summary>
 		/// Создаёт клиентов рекламного агентства.
@@ -79,7 +79,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createClients
 		/// </remarks>
-		Task<ReadOnlyCollection<CreateClientResult>> CreateClientsAsync(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification);
+		Task<List<CreateClientResult>> CreateClientsAsync(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification);
 
 		/// <summary>
 		/// Создаёт запрос на поиск похожей аудитории.
@@ -132,7 +132,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteAds
 		/// </remarks>
-		Task<ReadOnlyCollection<bool>> DeleteAdsAsync(DeleteAdsParams deleteAdsParams);
+		Task<List<bool>> DeleteAdsAsync(DeleteAdsParams deleteAdsParams);
 
 		/// <summary>
 		/// Архивирует рекламные кампании.
@@ -144,7 +144,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteCampaigns
 		/// </remarks>
-		Task<ReadOnlyCollection<bool>> DeleteCampaignsAsync(DeleteCampaignsParams deleteCampaignsParams);
+		Task<List<bool>> DeleteCampaignsAsync(DeleteCampaignsParams deleteCampaignsParams);
 
 		/// <summary>
 		/// Архивирует клиентов рекламного агентства.
@@ -156,7 +156,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteClients
 		/// </remarks>
-		Task<ReadOnlyCollection<bool>> DeleteClientsAsync(DeleteClientsParams deleteClientsParams);
+		Task<List<bool>> DeleteClientsAsync(DeleteClientsParams deleteClientsParams);
 
 		/// <summary>
 		/// Удаляет аудиторию ретаргетинга.
@@ -203,7 +203,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getAccounts
 		/// </remarks>
-		Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync();
+		Task<List<AdsAccount>> GetAccountsAsync();
 
 		/// <summary>
 		/// Возвращает список рекламных объявлений.
@@ -278,7 +278,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getAds
 		/// </remarks>
-		Task<ReadOnlyCollection<Ad>> GetAdsAsync(GetAdsParams getAdsParams);
+		Task<List<Ad>> GetAdsAsync(GetAdsParams getAdsParams);
 
 		/// <summary>
 		/// Возвращает описания внешнего вида рекламных объявлений.
@@ -317,7 +317,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getAdsLayout
 		/// </remarks>
-		Task<ReadOnlyCollection<Layout>> GetAdsLayoutAsync(GetAdsLayoutParams getAdsLayoutParams);
+		Task<List<Layout>> GetAdsLayoutAsync(GetAdsLayoutParams getAdsLayoutParams);
 
 		/// <summary>
 		/// Возвращает параметры таргетинга рекламных объявлений
@@ -333,7 +333,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getAdsTargeting
 		/// </remarks>
-		Task<ReadOnlyCollection<AdsTargetingResult>> GetAdsTargetingAsync(GetAdsTargetingParams getAdsTargetingParams);
+		Task<List<AdsTargetingResult>> GetAdsTargetingAsync(GetAdsTargetingParams getAdsTargetingParams);
 
 		/// <summary>
 		/// Возвращает текущий бюджет рекламного кабинета.
@@ -378,7 +378,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getCampaigns
 		/// </remarks>
-		Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(AdsGetCampaignsParams adsGetCampaignsParams);
+		Task<List<AdsCampaign>> GetCampaignsAsync(AdsGetCampaignsParams adsGetCampaignsParams);
 
 		/// <summary>
 		/// Позволяет получить возможные тематики рекламных объявлений.
@@ -416,7 +416,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getClients
 		/// </remarks>
-		Task<ReadOnlyCollection<GetClientsResult>> GetClientsAsync(long accountId);
+		Task<List<GetClientsResult>> GetClientsAsync(long accountId);
 
 		/// <summary>
 		/// Возвращает демографическую статистику по рекламным объявлениям или кампаниям.
@@ -450,7 +450,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getDemographics
 		/// </remarks>
-		Task<ReadOnlyCollection<GetDemographicsResult>> GetDemographicsAsync(GetDemographicsParams getDemographicsParams);
+		Task<List<GetDemographicsResult>> GetDemographicsAsync(GetDemographicsParams getDemographicsParams);
 
 		/// <summary>
 		/// Возвращает информацию о текущем состоянии счетчика — количество оставшихся запусков методов и время до следующего обнуления счетчика в секундах.
@@ -511,7 +511,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getOfficeUsers
 		/// </remarks>
-		Task<ReadOnlyCollection<GetOfficeUsersResult>> GetOfficeUsersAsync(long accountId);
+		Task<List<GetOfficeUsersResult>> GetOfficeUsersAsync(long accountId);
 
 		/// <summary>
 		/// Возвращает подробную статистику по охвату рекламных записей из объявлений и кампаний для продвижения записей сообщества.
@@ -551,7 +551,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getPostsReach
 		/// </remarks>
-		Task<ReadOnlyCollection<GetPostsReachResult>> GetPostsReachAsync(long accountId, IdsType idsType, string ids);
+		Task<List<GetPostsReachResult>> GetPostsReachAsync(long accountId, IdsType idsType, string ids);
 
 		/// <summary>
 		/// Возвращает причину, по которой указанному объявлению было отказано в прохождении премодерации.
@@ -598,7 +598,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getStatistics
 		/// </remarks>
-		Task<ReadOnlyCollection<GetStatisticsResult>> GetStatisticsAsync(GetStatisticsParams getStatisticsParams);
+		Task<List<GetStatisticsResult>> GetStatisticsAsync(GetStatisticsParams getStatisticsParams);
 
 		/// <summary>
 		/// Возвращает набор подсказок для различных параметров таргетинга.
@@ -634,7 +634,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getSuggestions
 		/// </remarks>
-		Task<ReadOnlyCollection<GetSuggestionsResult>> GetSuggestionsAsync(GetSuggestionsParams getSuggestionsParams);
+		Task<List<GetSuggestionsResult>> GetSuggestionsAsync(GetSuggestionsParams getSuggestionsParams);
 
 		/// <summary>
 		/// Возвращает список аудиторий ретаргетинга.
@@ -668,7 +668,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getTargetGroups
 		/// </remarks>
-		Task<ReadOnlyCollection<GetTargetGroupsResult>> GetTargetGroupsAsync(long accountId, long? clientId = null, bool? extended = null);
+		Task<List<GetTargetGroupsResult>> GetTargetGroupsAsync(long accountId, long? clientId = null, bool? extended = null);
 
 		/// <summary>
 		/// Возвращает список пикселей ретаргетинга.
@@ -692,7 +692,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getTargetPixels
 		/// </remarks>
-		Task<ReadOnlyCollection<GetTargetPixelsResult>> GetTargetPixelsAsync(long accountId, long? clientId = null);
+		Task<List<GetTargetPixelsResult>> GetTargetPixelsAsync(long accountId, long? clientId = null);
 
 		/// <summary>
 		/// Возвращает размер целевой аудитории таргетинга, а также рекомендованные значения CPC и CPM.
@@ -757,7 +757,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.removeOfficeUsers
 		/// </remarks>
-		Task<ReadOnlyCollection<bool>> RemoveOfficeUsersAsync(RemoveOfficeUsersParams removeOfficeUsersParams);
+		Task<List<bool>> RemoveOfficeUsersAsync(RemoveOfficeUsersParams removeOfficeUsersParams);
 
 		/// <summary>
 		/// Принимает запрос на исключение контактов рекламодателя из аудитории ретаргетинга.
@@ -809,7 +809,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.updateAds
 		/// </remarks>
-		Task<ReadOnlyCollection<UpdateAdsResult>> UpdateAdsAsync(AdsDataSpecificationParams<AdEditSpecification> adEditDataSpecification);
+		Task<List<UpdateAdsResult>> UpdateAdsAsync(AdsDataSpecificationParams<AdEditSpecification> adEditDataSpecification);
 
 		/// <summary>
 		/// Редактирует рекламные кампании.
@@ -821,7 +821,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.updateCampaigns
 		/// </remarks>
-		Task<ReadOnlyCollection<UpdateCampaignsResult>> UpdateCampaignsAsync(AdsDataSpecificationParams<CampaignModSpecification> campaignModDataSpecification);
+		Task<List<UpdateCampaignsResult>> UpdateCampaignsAsync(AdsDataSpecificationParams<CampaignModSpecification> campaignModDataSpecification);
 
 		/// <summary>
 		/// Редактирует клиентов рекламного агентства.
@@ -833,7 +833,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.updateClients
 		/// </remarks>
-		Task<ReadOnlyCollection<UpdateClientsResult>> UpdateClientsAsync(AdsDataSpecificationParams<ClientModSpecification> clientModDataSpecification);
+		Task<List<UpdateClientsResult>> UpdateClientsAsync(AdsDataSpecificationParams<ClientModSpecification> clientModDataSpecification);
 
 		/// <summary>
 		/// Редактирует аудиторию ретаргетинга.
@@ -871,7 +871,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusicians
 		/// </remarks>
-		Task<ReadOnlyCollection<GetMusiciansResult>> GetMusiciansAsync(string artistName);
+		Task<List<GetMusiciansResult>> GetMusiciansAsync(string artistName);
 
 		/// <summary>
 		/// Возвращает информацию о музыкантах (по id музыкантов) на слушателей, для которых доступно таргетирование.
@@ -881,7 +881,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusiciansByIds
 		/// </remarks>
-		Task<ReadOnlyCollection<GetMusiciansByIdsResult>> GetMusiciansByIdsAsync(string ids);
+		Task<List<GetMusiciansByIdsResult>> GetMusiciansByIdsAsync(string ids);
 
 		/// <summary>
 		/// Добавляет/редактирует администраторов и/или наблюдателей в рекламный кабинет.
@@ -893,6 +893,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.updateOfficeUsers
 		/// </remarks>
-		Task<ReadOnlyCollection<UpdateOfficeUsersResult>> UpdateOfficeUsersAsync(AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification);
+		Task<List<UpdateOfficeUsersResult>> UpdateOfficeUsersAsync(AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification);
 	}
 }

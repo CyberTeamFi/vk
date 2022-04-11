@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Leads;
 
@@ -17,7 +17,7 @@ namespace VkNet.Abstractions
 		Lead GetStats(ulong leadId, string secret, string dateStart, string dateEnd);
 
 		/// <inheritdoc cref="ILeadsCategoryAsync.GetUsersAsync" />
-		ReadOnlyCollection<Entry> GetUsers(GetUsersParams getUsersParams);
+		List<Entry> GetUsers(GetUsersParams getUsersParams);
 
 		/// <inheritdoc cref="ILeadsCategoryAsync.MetricHitAsync" />
 		MetricHitResponse MetricHit(string data);

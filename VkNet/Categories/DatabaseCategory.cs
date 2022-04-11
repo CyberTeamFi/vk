@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
 using VkNet.Enums;
@@ -64,7 +64,7 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public ReadOnlyCollection<Street> GetStreetsById(params int[] streetIds)
+		public List<Street> GetStreetsById(params int[] streetIds)
 		{
 			var parameters = new VkParameters
 			{
@@ -72,12 +72,12 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call("database.getStreetsById", parameters, true)
-				.ToReadOnlyCollectionOf<Street>( x => x);
+				.ToListOf<Street>( x => x);
 		}
 
 		/// <inheritdoc />
 		[Pure]
-		public ReadOnlyCollection<Country> GetCountriesById(params int[] countryIds)
+		public List<Country> GetCountriesById(params int[] countryIds)
 		{
 			var parameters = new VkParameters
 			{
@@ -85,7 +85,7 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call("database.getCountriesById", parameters, true)
-				.ToReadOnlyCollectionOf<Country>( c => c);
+				.ToListOf<Country>( c => c);
 		}
 
 		/// <inheritdoc />
@@ -109,7 +109,7 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public ReadOnlyCollection<City> GetCitiesById(params int[] cityIds)
+		public List<City> GetCitiesById(params int[] cityIds)
 		{
 			var parameters = new VkParameters
 			{
@@ -117,7 +117,7 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call("database.getCitiesById", parameters, true)
-				.ToReadOnlyCollectionOf<City>( x => x);
+				.ToListOf<City>( x => x);
 		}
 
 		/// <inheritdoc />
@@ -183,7 +183,7 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public ReadOnlyCollection<SchoolClass> GetSchoolClasses(long countryId)
+		public List<SchoolClass> GetSchoolClasses(long countryId)
 		{
 			var parameters = new VkParameters
 			{
@@ -191,7 +191,7 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call("database.getSchoolClasses", parameters, true)
-				.ToReadOnlyCollectionOf<SchoolClass>( x => x);
+				.ToListOf<SchoolClass>( x => x);
 		}
 
 		/// <inheritdoc />
@@ -210,9 +210,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<MetroStation> GetMetroStationsById(IEnumerable<ulong> stationIds)
+		public List<MetroStation> GetMetroStationsById(IEnumerable<ulong> stationIds)
 		{
-			return _vk.Call<ReadOnlyCollection<MetroStation>>("database.getMetroStationsById",
+			return _vk.Call<List<MetroStation>>("database.getMetroStationsById",
 				new VkParameters
 				{
 					{ "station_ids", stationIds }

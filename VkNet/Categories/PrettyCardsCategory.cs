@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -74,9 +74,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<PrettyCardsGetByIdResult> GetById(PrettyCardsGetByIdParams @params)
+		public List<PrettyCardsGetByIdResult> GetById(PrettyCardsGetByIdParams @params)
 		{
-			return _vk.Call<ReadOnlyCollection<PrettyCardsGetByIdResult>>("prettyCards.getById", new VkParameters
+			return _vk.Call<List<PrettyCardsGetByIdResult>>("prettyCards.getById", new VkParameters
 			{
 				{ "owner_id", @params.OwnerId },
 				{ "card_ids", @params.CardIds }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -780,7 +780,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.getCatalog
 		/// </remarks>
-		Task<ReadOnlyCollection<VideoCatalog>> GetCatalogAsync(VideoGetCatalogParams @params);
+		Task<List<VideoCatalog>> GetCatalogAsync(VideoGetCatalogParams @params);
 
 		/// <summary>
 		/// Позволяет получить отдельный блок видеокаталога.
@@ -847,7 +847,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.getCatalogSection
 		/// </remarks>
-		Task<ReadOnlyCollection<VideoCatalogItem>> GetCatalogSectionAsync(string sectionId, string from, long? count = null,
+		Task<List<VideoCatalogItem>> GetCatalogSectionAsync(string sectionId, string from, long? count = null,
 																		bool? extended = null);
 
 		/// <summary>

@@ -33,7 +33,7 @@ namespace VkNet.Model
 			return new AppImageResult
 			{
 				Count = response[key: "count"],
-				Items = response[key: "items"].ToReadOnlyCollectionOf<AppImage>(x => x)
+				Items = response[key: "items"].ToListOf<AppImage>(x => x)
 			};
 		}
 

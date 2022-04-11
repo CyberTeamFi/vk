@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Utils;
@@ -29,7 +29,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<SmsHistoryItem>> GetSmsHistoryAsync(ulong? userId = null, DateTime? dateFrom = null,
+		public Task<List<SmsHistoryItem>> GetSmsHistoryAsync(ulong? userId = null, DateTime? dateFrom = null,
 																			DateTime? dateTo = null,
 																			ulong? limit = null)
 		{
@@ -37,25 +37,25 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Transaction>> GetTransactionsHistoryAsync()
+		public Task<List<Transaction>> GetTransactionsHistoryAsync()
 		{
 			return TypeHelper.TryInvokeMethodAsync(GetTransactionsHistory);
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<SecureLevel>> GetUserLevelAsync(IEnumerable<long> userIds)
+		public Task<List<SecureLevel>> GetUserLevelAsync(IEnumerable<long> userIds)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetUserLevel(userIds));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<EventSticker>> GiveEventStickerAsync(IEnumerable<ulong> userIds, ulong achievementId)
+		public Task<List<EventSticker>> GiveEventStickerAsync(IEnumerable<ulong> userIds, ulong achievementId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GiveEventSticker(userIds, achievementId));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<ulong>> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null)
+		public Task<List<ulong>> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SendNotification(message, userIds));
 		}

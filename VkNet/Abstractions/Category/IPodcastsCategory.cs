@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 
@@ -11,10 +11,10 @@ namespace VkNet.Abstractions
 		bool ClearRecentSearches();
 
 		/// <inheritdoc cref="IPodcastsCategoryAsync.GetPopularAsync"/>
-		ReadOnlyCollection<PodcastsGetPopularResult> GetPopular();
+		List<PodcastsGetPopularResult> GetPopular();
 
 		/// <inheritdoc cref="IPodcastsCategoryAsync.GetRecentSearchRequestsAsync"/>
-		ReadOnlyCollection<string> GetRecentSearchRequests();
+		List<string> GetRecentSearchRequests();
 
 		/// <inheritdoc cref="IPodcastsCategoryAsync.SearchAsync"/>
 		PodcastsSearchResult Search(PodcastsSearchParams @params);

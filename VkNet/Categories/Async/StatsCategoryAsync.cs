@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Utils;
@@ -9,7 +9,7 @@ namespace VkNet.Categories
 	public partial class StatsCategory
 	{
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<StatsPeriod>> GetAsync(StatsGetParams getParams)
+		public Task<List<StatsPeriod>> GetAsync(StatsGetParams getParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Get(getParams));
 		}

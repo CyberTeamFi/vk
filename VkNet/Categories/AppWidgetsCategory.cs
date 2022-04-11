@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -63,13 +63,13 @@ namespace VkNet.Categories
 
 		/// <param name="images"></param>
 		/// <inheritdoc/>
-		public ReadOnlyCollection<AppImage> GetImagesById(string images)
+		public List<AppImage> GetImagesById(string images)
 		{
 			var parameters = new VkParameters
 			{
 				{ "images", images }
 			};
-			return _vk.Call("appWidgets.getImagesById", parameters).ToReadOnlyCollectionOf<AppImage>(x => x);
+			return _vk.Call("appWidgets.getImagesById", parameters).ToListOf<AppImage>(x => x);
 		}
 
 		/// <inheritdoc/>

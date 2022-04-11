@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
@@ -159,7 +159,7 @@ namespace VkNet.Categories
 				{ "active", active }
 			};
 
-			return _vk.Call<ReadOnlyCollection<object>>("audio.getBroadcastList", parameters);
+			return _vk.Call<List<object>>("audio.getBroadcastList", parameters);
 		}
 
 		/// <inheritdoc />
@@ -170,7 +170,7 @@ namespace VkNet.Categories
 				{ "audios", audios }
 			};
 
-			return _vk.Call<ReadOnlyCollection<Audio>>("audio.getById", parameters);
+			return _vk.Call<List<Audio>>("audio.getById", parameters);
 		}
 
 		/// <inheritdoc />
@@ -219,7 +219,7 @@ namespace VkNet.Categories
 				{ "count", count }
 			};
 
-			return _vk.Call<ReadOnlyCollection<Audio>>("audio.getPopular", parameters);
+			return _vk.Call<List<Audio>>("audio.getPopular", parameters);
 		}
 
 		/// <inheritdoc />
@@ -256,7 +256,7 @@ namespace VkNet.Categories
 				{ "audio_ids", audioIds }
 			};
 
-			return _vk.Call("audio.addToPlaylist", parameters).ToReadOnlyCollectionOf<long>(x => x["audio_id"]);
+			return _vk.Call("audio.addToPlaylist", parameters).ToListOf<long>(x => x["audio_id"]);
 		}
 
 		/// <inheritdoc />
@@ -332,7 +332,7 @@ namespace VkNet.Categories
 				{ "target_ids", targetIds }
 			};
 
-			return _vk.Call<ReadOnlyCollection<long>>("audio.setBroadcast", parameters);
+			return _vk.Call<List<long>>("audio.setBroadcast", parameters);
 		}
 	}
 }

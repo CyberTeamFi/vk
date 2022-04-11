@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
@@ -52,7 +52,7 @@ namespace VkNet.Model
 		/// Идентификатор автора комментария.
 		/// </summary>
 		[JsonProperty("parents_stack")]
-		public ReadOnlyCollection<long> ParentsStack { get; set; }
+		public List<long> ParentsStack { get; set; }
 
 		/// <summary>
 		/// Идентификатор автора комментария.
@@ -98,7 +98,7 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonConverter(typeof(AttachmentJsonConverter))]
 		[JsonProperty("attachments")]
-		public ReadOnlyCollection<Attachment> Attachments { get; set; }
+		public List<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Первое приложение к комментарию.
@@ -133,12 +133,12 @@ namespace VkNet.Model
 				Donut = response["donut"],
 				ReplyToUser = response["reply_to_user"],
 				ReplyToComment = response["reply_to_comment"],
-				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
+				Attachments = response["attachments"].ToListOf<Attachment>(x => x),
 				Likes = response["likes"],
 				PostId = response["post_id"],
 				PhotoId = response["pid"],
 				OwnerId = response["owner_id"],
-				ParentsStack = response["parents_stack"].ToReadOnlyCollectionOf<long>(x => x),
+				ParentsStack = response["parents_stack"].ToListOf<long>(x => x),
 				Thread = response["thread"]
 			};
 		}

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Utils;
@@ -26,9 +26,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<StorageObject> Get(IEnumerable<string> keys = null, ulong? userId = null, bool? global = null)
+		public List<StorageObject> Get(IEnumerable<string> keys = null, ulong? userId = null, bool? global = null)
 		{
-			return _vk.Call<ReadOnlyCollection<StorageObject>>(methodName: "storage.get"
+			return _vk.Call<List<StorageObject>>(methodName: "storage.get"
 					, parameters: new VkParameters
 					{
 							{ "keys", keys }
@@ -38,9 +38,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<string> GetKeys(ulong? userId = null, bool? global = null, ulong? offset = null, ulong? count = null)
+		public List<string> GetKeys(ulong? userId = null, bool? global = null, ulong? offset = null, ulong? count = null)
 		{
-			return _vk.Call<ReadOnlyCollection<string>>(methodName: "storage.getKeys"
+			return _vk.Call<List<string>>(methodName: "storage.getKeys"
 					, parameters: new VkParameters
 					{
 							{ "user_id", userId }

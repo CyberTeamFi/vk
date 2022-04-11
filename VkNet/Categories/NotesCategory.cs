@@ -110,7 +110,7 @@ namespace VkNet.Categories
 					{"offset",  notesGetParams.Offset},
 					{"count",  notesGetParams.Count},
 					{"sort",  notesGetParams.Sort}
-				}).ToReadOnlyCollectionOf<Note>(selector: x => x);
+				}).ToListOf<Note>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -136,7 +136,7 @@ namespace VkNet.Categories
 					{"sort", getCommentParams.Sort},
 					{"offset", getCommentParams.Offset},
 					{"count", getCommentParams.Count},
-				}).ToReadOnlyCollectionOf<CommentNote>(selector: x => x);
+				}).ToListOf<CommentNote>(selector: x => x);
 		}
 
 		/// <inheritdoc />

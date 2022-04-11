@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -20,6 +20,6 @@ namespace VkNet.Model
 		/// Данные о статистике.
 		/// </summary>
 		[JsonProperty(propertyName: "stats")]
-		public ReadOnlyCollection<LinkStat> Stats { get; set; }
+		public List<LinkStat> Stats { get; set; }
 	}
 }

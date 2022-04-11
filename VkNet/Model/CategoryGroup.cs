@@ -56,9 +56,9 @@ namespace VkNet.Model
 			{
 				Id = response[key: "id"],
 				Name = response[key: "name"],
-				Subcategories = response[key: "subcategories"].ToReadOnlyCollectionOf<CategoryGroup>(selector: o => o),
+				Subcategories = response[key: "subcategories"].ToListOf<CategoryGroup>(selector: o => o),
 				PageCount = response[key: "page_count"],
-				PagePreviews = response[key: "page_previews"].ToReadOnlyCollectionOf<Group>(selector: o => o)
+				PagePreviews = response[key: "page_previews"].ToListOf<Group>(selector: o => o)
 			};
 		}
 	}

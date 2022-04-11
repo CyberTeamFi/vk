@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using Amazon.DynamoDBv2.DataModel;
 
 namespace VkNet.Utils
 {
@@ -48,6 +49,7 @@ namespace VkNet.Utils
 		/// <value>
 		/// The request URI.
 		/// </value>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri RequestUri { get; private set; }
 
 		/// <summary>
@@ -56,6 +58,7 @@ namespace VkNet.Utils
 		/// <value>
 		/// The request URI.
 		/// </value>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri ResponseUri { get; private set; }
 
 		/// <summary>

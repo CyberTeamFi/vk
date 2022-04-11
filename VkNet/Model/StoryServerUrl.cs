@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -14,6 +16,7 @@ namespace VkNet.Model
 		/// Адрес сервера для загрузки файла.
 		/// </summary>
 		[JsonProperty("upload_url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri UploadUrl { get; set; }
 
 		/// <summary>

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -16,7 +16,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Список элементов блока видеокаталога
 		/// </summary>
-		public ReadOnlyCollection<VideoCatalogItem> Items { get; set; }
+		public List<VideoCatalogItem> Items { get; set; }
 
 		/// <summary>
 		/// Идентификатор блока. Возвращается строка для предопределенных блоков. Для
@@ -68,7 +68,7 @@ namespace VkNet.Model
 					, CanHide = response[key: "can_hide"]
 					, Type = response[key: "type"]
 					, Next = response[key: "next"]
-					, Items = response[key: "items"].ToReadOnlyCollectionOf<VideoCatalogItem>(selector: x => x)
+					, Items = response[key: "items"].ToListOf<VideoCatalogItem>(selector: x => x)
 					, View = response[key: "view"]
 			};
 

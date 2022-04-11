@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -14,6 +14,6 @@ namespace VkNet.Model
 		/// Leads.
 		/// </summary>
 		[JsonProperty("leads")]
-		public ReadOnlyCollection<GetLeadResult> Leads { get; set; }
+		public List<GetLeadResult> Leads { get; set; }
 	}
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -20,18 +20,18 @@ namespace VkNet.Model
 		/// Массив объектов, описывающих сообщения
 		/// </summary>
 		[JsonProperty("items")]
-		public ReadOnlyCollection<Message> Items { get; set; }
+		public List<Message> Items { get; set; }
 
 		/// <summary>
 		/// Массив объектов пользователей.
 		/// </summary>
 		[JsonProperty("profiles")]
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Массив объектов сообществ.
 		/// </summary>
 		[JsonProperty("groups")]
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public List<Group> Groups { get; set; }
 	}
 }

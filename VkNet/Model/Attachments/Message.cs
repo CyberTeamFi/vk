@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -45,11 +45,11 @@ namespace VkNet.Model
 				FromId = response["from_id"],
 				Text = response["text"],
 				RandomId = response["random_id"],
-				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
+				Attachments = response["attachments"].ToListOf<Attachment>(x => x),
 				Important = response["important"],
 				Geo = response["geo"],
 				Payload = response["payload"],
-				ForwardedMessages = response["fwd_messages"].ToReadOnlyCollectionOf<Message>(x => x),
+				ForwardedMessages = response["fwd_messages"].ToListOf<Message>(x => x),
 				ReadState = response["read_state"],
 				Action = response["action"],
 				Type = response["out"],
@@ -60,7 +60,7 @@ namespace VkNet.Model
 
 				// дополнительные поля бесед
 				ChatId = response["chat_id"],
-				ChatActive = response["chat_active"].ToReadOnlyCollectionOf<long>(x => x),
+				ChatActive = response["chat_active"].ToListOf<long>(x => x),
 				UsersCount = response["users_count"],
 				AdminId = response["admin_id"],
 				PhotoPreviews = response,
@@ -188,13 +188,13 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("attachments")]
 		[JsonConverter(typeof(AttachmentJsonConverter))]
-		public ReadOnlyCollection<Attachment> Attachments { get; set; }
+		public List<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Массив пересланных сообщений (если есть).
 		/// </summary>
 		[JsonProperty("fwd_messages")]
-		public ReadOnlyCollection<Message> ForwardedMessages { get; set; }
+		public List<Message> ForwardedMessages { get; set; }
 
 		/// <summary>
 		/// Содержатся ли в сообщении emoji-смайлы.
@@ -253,7 +253,7 @@ namespace VkNet.Model
 		/// Идентификаторы участников беседы.
 		/// </summary>
 		[JsonProperty("chat_active")]
-		public ReadOnlyCollection<long> ChatActive { get; set; }
+		public List<long> ChatActive { get; set; }
 
 		/// <summary>
 		/// Настройки уведомлений для беседы, если они есть. sound и disabled_until

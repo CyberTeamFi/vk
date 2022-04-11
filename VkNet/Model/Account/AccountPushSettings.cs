@@ -44,7 +44,7 @@ namespace VkNet.Model
 			{
 					Disabled = response[key: "disabled"]
 					, DisabledUntil = response[key: "disabled_until"]
-					, Conversations = response[key: "conversations"].ToReadOnlyCollectionOf<ChatPushSettings>(selector: o => o)
+					, Conversations = response[key: "conversations"].ToListOf<ChatPushSettings>(selector: o => o)
 					, Settings = response[key: "settings"]
 			};
 		}

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Infrastructure;
@@ -50,7 +50,7 @@ namespace VkNet.Model
 		/// </remarks>
 		/// </summary>
 		[JsonProperty("sections")]
-		public ReadOnlyCollection<VideoAdsSection> Sections { get; set; }
+		public List<VideoAdsSection> Sections { get; set; }
 
 		/// <summary>
 		/// TODO: Undocumented
@@ -60,7 +60,7 @@ namespace VkNet.Model
 		/// </remarks>
 		/// </summary>
 		[JsonProperty("midroll_percents")]
-		public ReadOnlyCollection<float> MidrollPercents { get; set; }
+		public List<float> MidrollPercents { get; set; }
 
 		/// <summary>
 		/// TODO: Undocumented

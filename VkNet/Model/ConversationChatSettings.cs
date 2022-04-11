@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
@@ -48,13 +48,13 @@ namespace VkNet.Model
 		/// Идентификаторы последних пользователей, писавших в чат.
 		/// </summary>
 		[JsonProperty("active_ids")]
-		public ReadOnlyCollection<long> ActiveIds { get; set; }
+		public List<long> ActiveIds { get; set; }
 
 		/// <summary>
 		/// Идентификаторы администраторов чата.
 		/// </summary>
 		[JsonProperty("admin_ids")]
-		public ReadOnlyCollection<long> AdminIds { get; set; }
+		public List<long> AdminIds { get; set; }
 
 		/// <summary>
 		/// Идентификатор владельца чата

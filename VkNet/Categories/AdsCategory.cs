@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums;
@@ -28,9 +28,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<bool> AddOfficeUsers(AdsDataSpecificationParams<UserSpecification> adsDataSpecification)
+		public List<bool> AddOfficeUsers(AdsDataSpecificationParams<UserSpecification> adsDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<bool>>("ads.addOfficeUsers",
+			return _vk.Call<List<bool>>("ads.addOfficeUsers",
 				new VkParameters
 				{
 					{ "account_id", adsDataSpecification.AccountId },
@@ -52,9 +52,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<CreateAdsResult> CreateAds(AdsDataSpecificationParams<AdSpecification> adsDataSpecification)
+		public List<CreateAdsResult> CreateAds(AdsDataSpecificationParams<AdSpecification> adsDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<CreateAdsResult>>("ads.createAds",
+			return _vk.Call<List<CreateAdsResult>>("ads.createAds",
 				new VkParameters
 				{
 					{ "account_id", adsDataSpecification.AccountId },
@@ -63,14 +63,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<CreateCampaignResult> CreateCampaigns(AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification)
+		public List<CreateCampaignResult> CreateCampaigns(AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification)
 		{
 			if (campaignsDataSpecification.Data.Length > 50)
 			{
 				throw new ArgumentOutOfRangeException(nameof(campaignsDataSpecification), "This method doesn't support more than 50 campaigns per call");
 			}
 
-			return _vk.Call<ReadOnlyCollection<CreateCampaignResult>>("ads.createCampaigns",
+			return _vk.Call<List<CreateCampaignResult>>("ads.createCampaigns",
 				new VkParameters
 				{
 					{ "account_id", campaignsDataSpecification.AccountId },
@@ -79,14 +79,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<CreateClientResult> CreateClients(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification)
+		public List<CreateClientResult> CreateClients(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification)
 		{
 			if (clientDataSpecification.Data.Length > 50)
 			{
 				throw new ArgumentOutOfRangeException(nameof(clientDataSpecification), "This method doesn't support more than 50 clients per call");
 			}
 
-			return _vk.Call<ReadOnlyCollection<CreateClientResult>>("ads.createClients",
+			return _vk.Call<List<CreateClientResult>>("ads.createClients",
 				new VkParameters
 				{
 					{ "account_id", clientDataSpecification.AccountId },
@@ -137,18 +137,18 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<bool> DeleteAds(DeleteAdsParams deleteAdsParams)
+		public List<bool> DeleteAds(DeleteAdsParams deleteAdsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<bool>>("ads.deleteAds", new VkParameters
+			return _vk.Call<List<bool>>("ads.deleteAds", new VkParameters
 			{
 				{ "account_id", deleteAdsParams.AccountId }, { "ids", JsonConvert.SerializeObject(deleteAdsParams.Ids) }
 			});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<bool> DeleteCampaigns(DeleteCampaignsParams deleteCampaignsParams)
+		public List<bool> DeleteCampaigns(DeleteCampaignsParams deleteCampaignsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<bool>>("ads.deleteCampaigns",
+			return _vk.Call<List<bool>>("ads.deleteCampaigns",
 				new VkParameters
 				{
 					{ "account_id", deleteCampaignsParams.AccountId },
@@ -157,9 +157,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<bool> DeleteClients(DeleteClientsParams deleteClientsParams)
+		public List<bool> DeleteClients(DeleteClientsParams deleteClientsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<bool>>("ads.deleteClients",
+			return _vk.Call<List<bool>>("ads.deleteClients",
 				new VkParameters
 				{
 					{ "account_id", deleteClientsParams.AccountId }, { "ids", JsonConvert.SerializeObject(deleteClientsParams.Ids) }
@@ -191,15 +191,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<AdsAccount> GetAccounts()
+		public List<AdsAccount> GetAccounts()
 		{
-			return _vk.Call<ReadOnlyCollection<AdsAccount>>("ads.getAccounts", VkParameters.Empty);
+			return _vk.Call<List<AdsAccount>>("ads.getAccounts", VkParameters.Empty);
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<Ad> GetAds(GetAdsParams getAdsParams)
+		public List<Ad> GetAds(GetAdsParams getAdsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<Ad>>("ads.getAds",
+			return _vk.Call<List<Ad>>("ads.getAds",
 				new VkParameters
 				{
 					{ "account_id", getAdsParams.AccountId },
@@ -213,9 +213,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<Layout> GetAdsLayout(GetAdsLayoutParams getAdsLayoutParams)
+		public List<Layout> GetAdsLayout(GetAdsLayoutParams getAdsLayoutParams)
 		{
-			return _vk.Call<ReadOnlyCollection<Layout>>("ads.getAdsLayout",
+			return _vk.Call<List<Layout>>("ads.getAdsLayout",
 				new VkParameters
 				{
 					{ "account_id", getAdsLayoutParams.AccountId }, { "campaign_ids", JsonConvert.SerializeObject(getAdsLayoutParams.CampaignIds) },
@@ -226,9 +226,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<AdsTargetingResult> GetAdsTargeting(GetAdsTargetingParams getAdsTargetingParams)
+		public List<AdsTargetingResult> GetAdsTargeting(GetAdsTargetingParams getAdsTargetingParams)
 		{
-			return _vk.Call<ReadOnlyCollection<AdsTargetingResult>>("ads.getAdsTargeting",
+			return _vk.Call<List<AdsTargetingResult>>("ads.getAdsTargeting",
 				new VkParameters
 				{
 					{ "account_id", getAdsTargetingParams.AccountId }, { "campaign_ids", getAdsTargetingParams.CampaignIds },
@@ -245,9 +245,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<AdsCampaign> GetCampaigns(AdsGetCampaignsParams adsGetCampaignsParams)
+		public List<AdsCampaign> GetCampaigns(AdsGetCampaignsParams adsGetCampaignsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<AdsCampaign>>("ads.getCampaigns",
+			return _vk.Call<List<AdsCampaign>>("ads.getCampaigns",
 				new VkParameters
 				{
 					{ "account_id", adsGetCampaignsParams.AccountId }
@@ -264,15 +264,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<GetClientsResult> GetClients(long accountId)
+		public List<GetClientsResult> GetClients(long accountId)
 		{
-			return _vk.Call<ReadOnlyCollection<GetClientsResult>>("ads.getClients", new VkParameters { { "account_id", accountId } });
+			return _vk.Call<List<GetClientsResult>>("ads.getClients", new VkParameters { { "account_id", accountId } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<GetDemographicsResult> GetDemographics(GetDemographicsParams getDemographicsParams)
+		public List<GetDemographicsResult> GetDemographics(GetDemographicsParams getDemographicsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<GetDemographicsResult>>("ads.getDemographics",
+			return _vk.Call<List<GetDemographicsResult>>("ads.getDemographics",
 				new VkParameters
 				{
 					{ "account_id", getDemographicsParams.AccountId }, { "ids_type", getDemographicsParams.IdsType },
@@ -303,15 +303,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<GetOfficeUsersResult> GetOfficeUsers(long accountId)
+		public List<GetOfficeUsersResult> GetOfficeUsers(long accountId)
 		{
-			return _vk.Call<ReadOnlyCollection<GetOfficeUsersResult>>("ads.getOfficeUsers", new VkParameters { { "account_id", accountId } });
+			return _vk.Call<List<GetOfficeUsersResult>>("ads.getOfficeUsers", new VkParameters { { "account_id", accountId } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<GetPostsReachResult> GetPostsReach(long accountId, IdsType idsType, string ids)
+		public List<GetPostsReachResult> GetPostsReach(long accountId, IdsType idsType, string ids)
 		{
-			return _vk.Call<ReadOnlyCollection<GetPostsReachResult>>("ads.getPostsReach",
+			return _vk.Call<List<GetPostsReachResult>>("ads.getPostsReach",
 				new VkParameters { { "account_id", accountId }, { "ids_type", idsType }, { "ids", ids } });
 		}
 
@@ -323,9 +323,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<GetStatisticsResult> GetStatistics(GetStatisticsParams getStatisticsParams)
+		public List<GetStatisticsResult> GetStatistics(GetStatisticsParams getStatisticsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<GetStatisticsResult>>("ads.getStatistics",
+			return _vk.Call<List<GetStatisticsResult>>("ads.getStatistics",
 				new VkParameters
 				{
 					{ "account_id", getStatisticsParams.AccountId }, { "ids_type", getStatisticsParams.IdsType },
@@ -335,9 +335,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<GetSuggestionsResult> GetSuggestions(GetSuggestionsParams getSuggestionsParams)
+		public List<GetSuggestionsResult> GetSuggestions(GetSuggestionsParams getSuggestionsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<GetSuggestionsResult>>("ads.getSuggestions",
+			return _vk.Call<List<GetSuggestionsResult>>("ads.getSuggestions",
 				new VkParameters
 				{
 					{ "section", getSuggestionsParams.Section }, { "ids", getSuggestionsParams.Ids }, { "q", getSuggestionsParams.Q },
@@ -347,16 +347,16 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<GetTargetGroupsResult> GetTargetGroups(long accountId, long? clientId = null, bool? extended = null)
+		public List<GetTargetGroupsResult> GetTargetGroups(long accountId, long? clientId = null, bool? extended = null)
 		{
-			return _vk.Call<ReadOnlyCollection<GetTargetGroupsResult>>("ads.getTargetGroups",
+			return _vk.Call<List<GetTargetGroupsResult>>("ads.getTargetGroups",
 				new VkParameters { { "account_id", accountId }, { "client_id", clientId }, { "extended", extended } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<GetTargetPixelsResult> GetTargetPixels(long accountId, long? clientId = null)
+		public List<GetTargetPixelsResult> GetTargetPixels(long accountId, long? clientId = null)
 		{
-			return _vk.Call<ReadOnlyCollection<GetTargetPixelsResult>>("ads.getTargetPixels",
+			return _vk.Call<List<GetTargetPixelsResult>>("ads.getTargetPixels",
 				new VkParameters { { "account_id", accountId }, { "client_id", clientId } });
 		}
 
@@ -402,9 +402,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<bool> RemoveOfficeUsers(RemoveOfficeUsersParams removeOfficeUsersParams)
+		public List<bool> RemoveOfficeUsers(RemoveOfficeUsersParams removeOfficeUsersParams)
 		{
-			return _vk.Call<ReadOnlyCollection<bool>>("ads.removeOfficeUsers",
+			return _vk.Call<List<bool>>("ads.removeOfficeUsers",
 				new VkParameters { { "account_id", removeOfficeUsersParams.AccountId }, { "ids", JsonConvert.SerializeObject(removeOfficeUsersParams.Ids) } });
 		}
 
@@ -444,23 +444,23 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<UpdateAdsResult> UpdateAds(AdsDataSpecificationParams<AdEditSpecification> adEditDataSpecification)
+		public List<UpdateAdsResult> UpdateAds(AdsDataSpecificationParams<AdEditSpecification> adEditDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<UpdateAdsResult>>("ads.updateAds",
+			return _vk.Call<List<UpdateAdsResult>>("ads.updateAds",
 				new VkParameters { { "account_id", adEditDataSpecification.AccountId }, { "data", adEditDataSpecification.Data } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<UpdateCampaignsResult> UpdateCampaigns(AdsDataSpecificationParams<CampaignModSpecification> campaignModDataSpecification)
+		public List<UpdateCampaignsResult> UpdateCampaigns(AdsDataSpecificationParams<CampaignModSpecification> campaignModDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<UpdateCampaignsResult>>("ads.updateCampaigns",
+			return _vk.Call<List<UpdateCampaignsResult>>("ads.updateCampaigns",
 				new VkParameters { { "account_id", campaignModDataSpecification.AccountId }, { "data", campaignModDataSpecification.Data } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<UpdateClientsResult> UpdateClients(AdsDataSpecificationParams<ClientModSpecification> clientModDataSpecification)
+		public List<UpdateClientsResult> UpdateClients(AdsDataSpecificationParams<ClientModSpecification> clientModDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<UpdateClientsResult>>("ads.updateClients",
+			return _vk.Call<List<UpdateClientsResult>>("ads.updateClients",
 				new VkParameters { { "account_id", clientModDataSpecification.AccountId }, { "data", clientModDataSpecification.Data } });
 		}
 
@@ -494,9 +494,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<GetMusiciansResult> GetMusicians(string artistName)
+		public List<GetMusiciansResult> GetMusicians(string artistName)
 		{
-			return _vk.Call<ReadOnlyCollection<GetMusiciansResult>>("ads.getMusicians",
+			return _vk.Call<List<GetMusiciansResult>>("ads.getMusicians",
 				new VkParameters
 				{
 					{ "artist_name", artistName }
@@ -504,9 +504,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<GetMusiciansByIdsResult> GetMusiciansByIds(string ids)
+		public List<GetMusiciansByIdsResult> GetMusiciansByIds(string ids)
 		{
-			return _vk.Call<ReadOnlyCollection<GetMusiciansByIdsResult>>("ads.getMusiciansByIds",
+			return _vk.Call<List<GetMusiciansByIdsResult>>("ads.getMusiciansByIds",
 				new VkParameters
 				{
 					{ "ids", ids }
@@ -514,10 +514,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<UpdateOfficeUsersResult> UpdateOfficeUsers(
+		public List<UpdateOfficeUsersResult> UpdateOfficeUsers(
 			AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<UpdateOfficeUsersResult>>("ads.updateOfficeUsers",
+			return _vk.Call<List<UpdateOfficeUsersResult>>("ads.updateOfficeUsers",
 				 new VkParameters
 				{
 					{ "account_id", officeUsersSpecification.AccountId },

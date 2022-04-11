@@ -1,4 +1,5 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -97,6 +98,7 @@ namespace VkNet.Model
 		/// Иконка
 		/// </summary>
 		[JsonProperty("icon")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Icon { get; set; }
 
 		/// <summary>
@@ -127,6 +129,7 @@ namespace VkNet.Model
 		///
 		/// </summary>
 		[JsonProperty("group_photo")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri GroupPhoto { get; set; }
 
 	#region Методы

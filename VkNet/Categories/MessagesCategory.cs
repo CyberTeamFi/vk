@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
@@ -217,7 +217,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params)
+		public List<MessagesSendResult> SendToUserIds(MessagesSendParams @params)
 		{
 			return _vk.Call("messages.send",
 					new VkParameters
@@ -247,7 +247,7 @@ namespace VkNet.Categories
 						{ "subscribe_id", @params.SubscribeId },
 						{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : "" }
 					})
-				.ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
+				.ToListOf<MessagesSendResult>(x => x);
 		}
 
 		/// <inheritdoc />
@@ -528,7 +528,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null)
+		public List<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			var isNoEmpty = chatIds == null || !chatIds.Any();
 
@@ -554,8 +554,8 @@ namespace VkNet.Categories
 			var response = _vk.Call("messages.getChat", parameters);
 
 			return chatIds.Count() > 1
-				? response.ToReadOnlyCollectionOf<Chat>(c => c)
-				: new ReadOnlyCollection<Chat>(new List<Chat>
+				? response.ToListOf<Chat>(c => c)
+				: new List<Chat>(new List<Chat>
 				{
 					response
 				});
@@ -596,7 +596,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
+		public List<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
 		{
 			var collection = chatIds.ToList();
 
@@ -615,7 +615,7 @@ namespace VkNet.Categories
 			{
 				var chatResponse = response[chatId.ToString()];
 
-				var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null
+				var users = chatResponse.ToListOf(x => fields != null
 					? x
 					: new User
 					{
@@ -633,7 +633,7 @@ namespace VkNet.Categories
 				}
 			}
 
-			return list.ToReadOnlyCollection();
+			return list.ToList();
 		}
 
 		/// <inheritdoc />
@@ -720,7 +720,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<long> MarkAsImportant(IEnumerable<long> messageIds, bool important = true)
+		public List<long> MarkAsImportant(IEnumerable<long> messageIds, bool important = true)
 		{
 			var parameters = new VkParameters
 			{
@@ -730,7 +730,7 @@ namespace VkNet.Categories
 
 			VkResponseArray result = _vk.Call("messages.markAsImportant", parameters);
 
-			return result.ToReadOnlyCollectionOf<long>(x => x);
+			return result.ToListOf<long>(x => x);
 		}
 
 		/// <inheritdoc />
@@ -749,7 +749,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom)
+		public List<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom)
 		{
 			var result = _vk.Call("messages.getHistoryAttachments",
 				new VkParameters
@@ -765,7 +765,7 @@ namespace VkNet.Categories
 
 			nextFrom = result["next_from"];
 
-			return result.ToReadOnlyCollectionOf<HistoryAttachment>(o => o);
+			return result.ToListOf<HistoryAttachment>(o => o);
 		}
 
 		/// <inheritdoc />

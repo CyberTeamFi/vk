@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -20,7 +20,7 @@ namespace VkNet.Model
 		/// </summary>
 		public LongPollHistoryResponse()
 		{
-			History = new List<ReadOnlyCollection<long>>();
+			History = new List<List<long>>();
 		}
 
 		/// <summary>
@@ -28,7 +28,7 @@ namespace VkNet.Model
 		/// </summary>
 
 		// ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
-		public List<ReadOnlyCollection<long>> History { get; set; }
+		public List<List<long>> History { get; set; }
 
 		/// <summary>
 		/// Количество непрочитанных сообщений
@@ -38,17 +38,17 @@ namespace VkNet.Model
 		/// <summary>
 		/// Колекция сообщений.
 		/// </summary>
-		public ReadOnlyCollection<Message> Messages { get; set; }
+		public List<Message> Messages { get; set; }
 
 		/// <summary>
 		/// Колекция профилей.
 		/// </summary>
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Колекция профилей.
 		/// </summary>
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public List<Group> Groups { get; set; }
 
 		/// <summary>
 		/// Последнее значение параметра new_pts, полученное от Long Poll сервера,
@@ -73,9 +73,9 @@ namespace VkNet.Model
 			var fromJson = new LongPollHistoryResponse
 			{
 				UnreadMessages = response[key: "messages"][key: "count"],
-				Messages = response[key: "messages"][key: "items"].ToReadOnlyCollectionOf<Message>(selector: x => x),
-				Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: x => x),
-				Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: x => x),
+				Messages = response[key: "messages"][key: "items"].ToListOf<Message>(selector: x => x),
+				Profiles = response[key: "profiles"].ToListOf<User>(selector: x => x),
+				Groups = response[key: "groups"].ToListOf<Group>(selector: x => x),
 				NewPts = response[key: "new_pts"],
 				More = response[key: "more"]
 			};
@@ -85,7 +85,7 @@ namespace VkNet.Model
 			foreach (var history in histories)
 			{
 				VkResponseArray item = history;
-				fromJson.History.Add(item: new ReadOnlyCollection<long>(list: item.ToReadOnlyCollectionOf<long>(selector: x => x)));
+				fromJson.History.Add(item: item.ToListOf<long>(selector: x => x));
 			}
 
 			return fromJson;

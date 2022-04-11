@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -24,10 +24,10 @@ namespace VkNet.Abstractions
 						, AccessPages edit = AccessPages.Leaders);
 
 		/// <inheritdoc cref="IPagesCategoryAsync.GetHistoryAsync"/>
-		ReadOnlyCollection<PageVersion> GetHistory(long pageId, long groupId, long? userId = null);
+		List<PageVersion> GetHistory(long pageId, long groupId, long? userId = null);
 
 		/// <inheritdoc cref="IPagesCategoryAsync.GetTitlesAsync"/>
-		ReadOnlyCollection<Page> GetTitles(long groupId);
+		List<Page> GetTitles(long groupId);
 
 		/// <inheritdoc cref="IPagesCategoryAsync.GetVersionAsync"/>
 		Page GetVersion(long versionId, long groupId, bool needHtml = false, long? userId = null);

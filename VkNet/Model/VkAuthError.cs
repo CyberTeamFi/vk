@@ -1,5 +1,7 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -37,6 +39,7 @@ namespace VkNet.Model
 		/// Captcha image Uri.
 		/// </summary>
 		[JsonProperty("captcha_img")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri CaptchaImg { get; set; }
 	}
 }

@@ -43,7 +43,7 @@ namespace VkNet.Model
 			{
 				Id = response[key: "id"],
 				Type = response[key: "type"],
-				Images = response[key: "images"].ToReadOnlyCollectionOf<Image>(x => x)
+				Images = response[key: "images"].ToListOf<Image>(x => x)
 			};
 		}
 

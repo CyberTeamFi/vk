@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -30,15 +30,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<PodcastsGetPopularResult> GetPopular()
+		public List<PodcastsGetPopularResult> GetPopular()
 		{
-			return _vk.Call<ReadOnlyCollection<PodcastsGetPopularResult>>("podcasts.getPopular", VkParameters.Empty);
+			return _vk.Call<List<PodcastsGetPopularResult>>("podcasts.getPopular", VkParameters.Empty);
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<string> GetRecentSearchRequests()
+		public List<string> GetRecentSearchRequests()
 		{
-			return _vk.Call<ReadOnlyCollection<string>>("podcasts.getRecentSearchRequests", VkParameters.Empty);
+			return _vk.Call<List<string>>("podcasts.getRecentSearchRequests", VkParameters.Empty);
 
 		}
 

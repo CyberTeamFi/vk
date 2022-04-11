@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -52,7 +52,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/docs.getById
 		/// </remarks>
-		Task<ReadOnlyCollection<Document>> GetByIdAsync(IEnumerable<Document> docs);
+		Task<List<Document>> GetByIdAsync(IEnumerable<Document> docs);
 
 		/// <summary>
 		/// Возвращает адрес сервера для загрузки документов.
@@ -99,11 +99,11 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/docs.save
 		/// </remarks>
-		Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null);
+		Task<List<Attachment>> SaveAsync(string file, string title, string tags = null);
 
 		/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string)" />
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-		Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null, long? captchaSid = null,
+		Task<List<Attachment>> SaveAsync(string file, string title, string tags = null, long? captchaSid = null,
 														string captchaKey = null);
 
 		/// <summary>

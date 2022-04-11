@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
@@ -92,7 +92,7 @@ namespace VkNet.Model.Attachments
 		/// Информация о вложениях записи (фотографии ссылки и т.п.).
 		/// </summary>
 		[JsonConverter(typeof(AttachmentJsonConverter))]
-		public ReadOnlyCollection<Attachment> Attachments { get; set; }
+		public List<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Первое вложение.
@@ -150,7 +150,7 @@ namespace VkNet.Model.Attachments
 		/// Массив, содержащий историю репостов для записи. Возвращается только в том
 		/// случае, если запись является репостом.
 		/// </summary>
-		public ReadOnlyCollection<Post> CopyHistory { get; set; }
+		public List<Post> CopyHistory { get; set; }
 
 	#region Методы
 
@@ -198,8 +198,8 @@ namespace VkNet.Model.Attachments
 			res.PostType = response["post_type"];
 			res.PostSource = response["post_source"];
 			res.Geo = response["geo"];
-			res.Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x);
-			res.CopyHistory = response["copy_history"].ToReadOnlyCollectionOf<Post>(x => x);
+			res.Attachments = response["attachments"].ToListOf<Attachment>(x => x);
+			res.CopyHistory = response["copy_history"].ToListOf<Post>(x => x);
 			res.Views = response["views"];
 			res.Donut = response["donut"];
 

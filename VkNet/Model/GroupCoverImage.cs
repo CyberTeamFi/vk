@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -12,6 +13,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// URL копии;
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Url { get; set; }
 
 		/// <summary>

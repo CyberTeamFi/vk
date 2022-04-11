@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Utils;
@@ -56,10 +56,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<SmsHistoryItem> GetSmsHistory(ulong? userId = null, DateTime? dateFrom = null, DateTime? dateTo = null,
+		public List<SmsHistoryItem> GetSmsHistory(ulong? userId = null, DateTime? dateFrom = null, DateTime? dateTo = null,
 																ulong? limit = null)
 		{
-			return _vk.Call<ReadOnlyCollection<SmsHistoryItem>>("secure.getSMSHistory",
+			return _vk.Call<List<SmsHistoryItem>>("secure.getSMSHistory",
 				new VkParameters
 				{
 					{ "user_id", userId },
@@ -70,15 +70,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Transaction> GetTransactionsHistory()
+		public List<Transaction> GetTransactionsHistory()
 		{
-			return _vk.Call<ReadOnlyCollection<Transaction>>("secure.getTransactionsHistory", VkParameters.Empty);
+			return _vk.Call<List<Transaction>>("secure.getTransactionsHistory", VkParameters.Empty);
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<SecureLevel> GetUserLevel(IEnumerable<long> userIds)
+		public List<SecureLevel> GetUserLevel(IEnumerable<long> userIds)
 		{
-			return _vk.Call<ReadOnlyCollection<SecureLevel>>("secure.getUserLevel",
+			return _vk.Call<List<SecureLevel>>("secure.getUserLevel",
 				new VkParameters
 				{
 					{ "user_ids", userIds }
@@ -86,9 +86,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<EventSticker> GiveEventSticker(IEnumerable<ulong> userIds, ulong achievementId)
+		public List<EventSticker> GiveEventSticker(IEnumerable<ulong> userIds, ulong achievementId)
 		{
-			return _vk.Call<ReadOnlyCollection<EventSticker>>("secure.giveEventSticker",
+			return _vk.Call<List<EventSticker>>("secure.giveEventSticker",
 				new VkParameters
 				{
 					{ "user_ids", userIds },
@@ -97,9 +97,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<ulong> SendNotification(string message, IEnumerable<ulong> userIds = null)
+		public List<ulong> SendNotification(string message, IEnumerable<ulong> userIds = null)
 		{
-			return _vk.Call<ReadOnlyCollection<ulong>>("secure.sendNotification",
+			return _vk.Call<List<ulong>>("secure.sendNotification",
 				new VkParameters
 				{
 					{ "message", message },

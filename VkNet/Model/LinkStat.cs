@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -27,18 +27,18 @@ namespace VkNet.Model
 		/// Половозрастная статистика
 		/// </summary>
 		[JsonProperty(propertyName: "sex_age")]
-		public ReadOnlyCollection<SexAge> SexAge { get; set; }
+		public List<SexAge> SexAge { get; set; }
 
 		/// <summary>
 		/// Статистика по странам
 		/// </summary>
 		[JsonProperty(propertyName: "countries")]
-		public ReadOnlyCollection<CountriesStats> Countries { get; set; }
+		public List<CountriesStats> Countries { get; set; }
 
 		/// <summary>
 		/// Статистика по городам
 		/// </summary>
 		[JsonProperty(propertyName: "cities")]
-		public ReadOnlyCollection<CitiesStats> Cities { get; set; }
+		public List<CitiesStats> Cities { get; set; }
 	}
 }

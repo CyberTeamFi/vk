@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -17,18 +18,21 @@ namespace VkNet.Model.Attachments
 		/// Изображение 48х48.
 		/// </summary>
 		[JsonProperty("thumb_48")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Thumb48 { get; set; }
 
 		/// <summary>
 		/// Изображение 96х96.
 		/// </summary>
 		[JsonProperty("thumb_96")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Thumb96 { get; set; }
 
 		/// <summary>
 		/// Изображение 256х256.
 		/// </summary>
 		[JsonProperty("thumb_256")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Thumb256 { get; set; }
 
 		/// <summary>

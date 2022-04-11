@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -29,7 +29,7 @@ namespace VkNet.Abstractions
 										bool? deleteForAll = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync"/>
-		IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId, 
+		IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId,
 												bool? spam = null, ulong? groupId = null,
 												bool? deleteForAll = null);
 
@@ -53,7 +53,7 @@ namespace VkNet.Abstractions
 		long Send(MessagesSendParams @params);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.SendToUserIdsAsync"/>
-		ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params);
+		List<MessagesSendResult> SendToUserIds(MessagesSendParams @params);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.RestoreAsync"/>
 		bool Restore(ulong messageId, ulong? groupId = null);
@@ -71,7 +71,7 @@ namespace VkNet.Abstractions
 		Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(long, ProfileFields, NameCase)"/>
-		ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
+		List<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetChatPreviewAsync"/>
 		ChatPreview GetChatPreview(string link, ProfileFields fields);
@@ -92,13 +92,13 @@ namespace VkNet.Abstractions
 		long SetChatPhoto(out long messageId, string file);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.MarkAsImportantAsync"/>
-		ReadOnlyCollection<long> MarkAsImportant([NotNull] IEnumerable<long> messageIds, bool important = true);
+		List<long> MarkAsImportant([NotNull] IEnumerable<long> messageIds, bool important = true);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.SendStickerAsync"/>
 		long SendSticker(MessagesSendStickerParams @params);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetHistoryAttachmentsAsync"/>
-		ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom);
+		List<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetInviteLinkAsync"/>
 		string GetInviteLink(ulong peerId, bool reset);
@@ -186,7 +186,7 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
 		[Obsolete(ObsoleteText.MessageGetChatUsers)]
-		ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+		List<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetDialogsAsync"/>
 		[Obsolete(ObsoleteText.MessageGet)]

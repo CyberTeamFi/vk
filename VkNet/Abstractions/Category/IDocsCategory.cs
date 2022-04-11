@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -16,7 +16,7 @@ namespace VkNet.Abstractions
 		VkCollection<Document> Get(int? count = null, int? offset = null, long? ownerId = null, DocFilter? type = null);
 
 		/// <inheritdoc cref="IDocsCategoryAsync.GetByIdAsync"/>
-		ReadOnlyCollection<Document> GetById(IEnumerable<Document> docs);
+		List<Document> GetById(IEnumerable<Document> docs);
 
 		/// <inheritdoc cref="IDocsCategoryAsync.GetUploadServerAsync"/>
 		UploadServerInfo GetUploadServer(long? groupId = null);
@@ -25,11 +25,11 @@ namespace VkNet.Abstractions
 		UploadServerInfo GetWallUploadServer(long? groupId = null);
 
 		/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string)"/>
-		ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null);
+		List<Attachment> Save(string file, string title, string tags = null);
 
 		/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string,long?,string)"/>
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-		ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
+		List<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
 											string captchaKey = null);
 
 		/// <inheritdoc cref="IDocsCategoryAsync.DeleteAsync"/>

@@ -53,7 +53,7 @@ namespace VkNet.Model
 			return new ChatPreviewField
 			{
 					AdminId = response[key: "admin_id"]
-					, Members = response[key: "members"].ToReadOnlyCollectionOf<long>(selector: x => x)
+					, Members = response[key: "members"].ToListOf<long>(selector: x => x)
 					, Title = response[key: "title"]
 					, Photo = response[key: "photo"]
 					, LocalId = response[key: "local_id"]

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -21,7 +21,7 @@ namespace VkNet.Model
 		/// Список объектов-запросов на поиск похожей аудитории запрошенного размера с запрошенным сдвигом
 		/// </summary>
 		[JsonProperty("items")]
-		public ReadOnlyCollection<LookalikeRequestItem> Items { get; set; }
+		public List<LookalikeRequestItem> Items { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -33,7 +33,7 @@ namespace VkNet.Model
 			return new GetLookalikeRequestsResult
 			{
 				Count = response["count"],
-				Items = response["items"].ToReadOnlyCollectionOf<LookalikeRequestItem>(x=>x)
+				Items = response["items"].ToListOf<LookalikeRequestItem>(x=>x)
 			};
 		}
 	}

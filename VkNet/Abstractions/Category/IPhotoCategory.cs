@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -28,7 +28,7 @@ namespace VkNet.Abstractions
 		int GetAlbumsCount(long? userId = null, long? groupId = null);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.GetByIdAsync"/>
-		ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos
+		List<Photo> GetById(IEnumerable<string> photos
 										, bool? extended = null
 										, bool? photoSizes = null
 										, bool skipAuthorization = false);
@@ -50,7 +50,7 @@ namespace VkNet.Abstractions
 		Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.SaveWallPhotoAsync"/>
-		ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId, ulong? groupId = null, string caption = null);
+		List<Photo> SaveWallPhoto(string response, ulong? userId, ulong? groupId = null, string caption = null);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.GetWallUploadServerAsync"/>
 		UploadServerInfo GetWallUploadServer(long? groupId = null);
@@ -59,7 +59,7 @@ namespace VkNet.Abstractions
 		UploadServerInfo GetMessagesUploadServer(long? groupId);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.SaveMessagesPhotoAsync"/>
-		ReadOnlyCollection<Photo> SaveMessagesPhoto(string response);
+		List<Photo> SaveMessagesPhoto(string response);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.GetOwnerCoverPhotoUploadServerAsync"/>
 		UploadServerInfo GetOwnerCoverPhotoUploadServer(long groupId
@@ -81,7 +81,7 @@ namespace VkNet.Abstractions
 		VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.SaveAsync"/>
-		ReadOnlyCollection<Photo> Save(PhotoSaveParams @params);
+		List<Photo> Save(PhotoSaveParams @params);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.CopyAsync"/>
 		long Copy(long ownerId, ulong photoId, string accessKey = null);
@@ -138,7 +138,7 @@ namespace VkNet.Abstractions
 		bool EditComment(ulong commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.GetTagsAsync"/>
-		ReadOnlyCollection<Tag> GetTags(ulong photoId, long? ownerId = null, string accessKey = null);
+		List<Tag> GetTags(ulong photoId, long? ownerId = null, string accessKey = null);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.PutTagAsync"/>
 		ulong PutTag(PhotoPutTagParams @params);
@@ -160,9 +160,9 @@ namespace VkNet.Abstractions
 		UploadServerInfo GetMarketAlbumUploadServer(long groupId);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.SaveMarketPhotoAsync"/>
-		ReadOnlyCollection<Photo> SaveMarketPhoto(long groupId, string response);
+		List<Photo> SaveMarketPhoto(long groupId, string response);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.SaveMarketAlbumPhotoAsync"/>
-		ReadOnlyCollection<Photo> SaveMarketAlbumPhoto(long groupId, string response);
+		List<Photo> SaveMarketAlbumPhoto(long groupId, string response);
 	}
 }

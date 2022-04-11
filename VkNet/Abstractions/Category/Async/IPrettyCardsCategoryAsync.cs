@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -71,7 +71,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getById
 		/// </remarks>
-		Task<ReadOnlyCollection<PrettyCardsGetByIdResult>> GetByIdAsync(PrettyCardsGetByIdParams @params);
+		Task<List<PrettyCardsGetByIdResult>> GetByIdAsync(PrettyCardsGetByIdParams @params);
 
 		/// <summary>
 		/// Метод возвращает URL для загрузки фотографии для карточки.

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Model;
@@ -72,7 +72,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<PageVersion> GetHistory(long pageId, long groupId, long? userId = null)
+		public List<PageVersion> GetHistory(long pageId, long groupId, long? userId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -81,11 +81,11 @@ namespace VkNet.Categories
 
 			VkResponseArray result = _vk.Call(methodName: "pages.getHistory", parameters: parameters);
 
-			return result.ToReadOnlyCollectionOf<PageVersion>(selector: x => x);
+			return result.ToListOf<PageVersion>(selector: x => x);
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Page> GetTitles(long groupId)
+		public List<Page> GetTitles(long groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -94,7 +94,7 @@ namespace VkNet.Categories
 
 			VkResponseArray result = _vk.Call(methodName: "pages.getTitles", parameters: parameters);
 
-			return result.ToReadOnlyCollectionOf<Page>(selector: x => x);
+			return result.ToListOf<Page>(selector: x => x);
 		}
 
 		/// <inheritdoc />

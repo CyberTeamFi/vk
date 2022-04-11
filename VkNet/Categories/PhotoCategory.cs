@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
@@ -135,7 +135,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos
+		public List<Photo> GetById(IEnumerable<string> photos
 												, bool? extended = null
 												, bool? photoSizes = null
 												, bool skipAuthorization = false)
@@ -149,7 +149,7 @@ namespace VkNet.Categories
 
 			VkResponseArray response = _vk.Call("photos.getById", parameters, skipAuthorization);
 
-			return response.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+			return response.ToListOf<Photo>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -215,7 +215,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId, ulong? groupId = null, string caption = null)
+		public List<Photo> SaveWallPhoto(string response, ulong? userId, ulong? groupId = null, string caption = null)
 		{
 			var responseJson = response.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
@@ -234,7 +234,7 @@ namespace VkNet.Categories
 
 			VkResponseArray responseVk = _vk.Call("photos.saveWallPhoto", parameters);
 
-			return responseVk.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+			return responseVk.ToListOf<Photo>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -259,7 +259,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Photo> SaveMessagesPhoto(string response)
+		public List<Photo> SaveMessagesPhoto(string response)
 		{
 			var responseJson = response.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
@@ -275,7 +275,7 @@ namespace VkNet.Categories
 
 			VkResponseArray result = _vk.Call("photos.saveMessagesPhoto", parameters);
 
-			return result.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+			return result.ToListOf<Photo>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -358,7 +358,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)
+		public List<Photo> Save(PhotoSaveParams @params)
 		{
 			var responseJson = @params.SaveFileResponse.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
@@ -379,7 +379,7 @@ namespace VkNet.Categories
 
 			VkResponseArray response = _vk.Call("photos.save", parameters);
 
-			return response.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+			return response.ToListOf<Photo>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -639,7 +639,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Tag> GetTags(ulong photoId, long? ownerId = null, string accessKey = null)
+		public List<Tag> GetTags(ulong photoId, long? ownerId = null, string accessKey = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -650,7 +650,7 @@ namespace VkNet.Categories
 
 			VkResponseArray response = _vk.Call("photos.getTags", parameters);
 
-			return response.ToReadOnlyCollectionOf<Tag>(selector: x => x);
+			return response.ToListOf<Tag>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -724,7 +724,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Photo> SaveMarketPhoto(long groupId, string response)
+		public List<Photo> SaveMarketPhoto(long groupId, string response)
 		{
 			var responseJson = response.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
@@ -743,11 +743,11 @@ namespace VkNet.Categories
 				{ "crop_hash", cropHash }
 			};
 
-			return _vk.Call("photos.saveMarketPhoto", parameters).ToReadOnlyCollectionOf<Photo>(selector: x => x);
+			return _vk.Call("photos.saveMarketPhoto", parameters).ToListOf<Photo>(selector: x => x);
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Photo> SaveMarketAlbumPhoto(long groupId, string response)
+		public List<Photo> SaveMarketAlbumPhoto(long groupId, string response)
 		{
 			var responseJson = response.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
@@ -763,7 +763,7 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call("photos.saveMarketAlbumPhoto", parameters)
-				.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+				.ToListOf<Photo>(selector: x => x);
 		}
 	}
 }

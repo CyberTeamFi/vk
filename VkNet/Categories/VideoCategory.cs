@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
@@ -422,7 +422,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<VideoCatalog> GetCatalog(VideoGetCatalogParams @params)
+		public List<VideoCatalog> GetCatalog(VideoGetCatalogParams @params)
 		{
 			var parameters = new VkParameters
 			{
@@ -433,11 +433,11 @@ namespace VkNet.Categories
 				{ "filters", @params.Filters }
 			};
 
-			return _vk.Call("video.getCatalog", parameters).ToReadOnlyCollectionOf<VideoCatalog>(selector: x => x);
+			return _vk.Call("video.getCatalog", parameters).ToListOf<VideoCatalog>(selector: x => x);
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<VideoCatalogItem> GetCatalogSection(string sectionId, string from, long? count = null,
+		public List<VideoCatalogItem> GetCatalogSection(string sectionId, string from, long? count = null,
 																	bool? extended = null)
 		{
 			var parameters = new VkParameters
@@ -449,7 +449,7 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call("video.getCatalogSection", parameters)
-				.ToReadOnlyCollectionOf<VideoCatalogItem>(selector: x => x);
+				.ToListOf<VideoCatalogItem>(selector: x => x);
 		}
 
 		/// <inheritdoc />

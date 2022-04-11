@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
@@ -27,13 +27,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Street>> GetStreetsByIdAsync(params int[] streetIds)
+		public Task<List<Street>> GetStreetsByIdAsync(params int[] streetIds)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetStreetsById(streetIds));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Country>> GetCountriesByIdAsync(params int[] countryIds)
+		public Task<List<Country>> GetCountriesByIdAsync(params int[] countryIds)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetCountriesById(countryIds));
 		}
@@ -45,7 +45,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<City>> GetCitiesByIdAsync(params int[] cityIds)
+		public Task<List<City>> GetCitiesByIdAsync(params int[] cityIds)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetCitiesById(cityIds));
 		}
@@ -73,7 +73,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<SchoolClass>> GetSchoolClassesAsync(long countryId)
+		public Task<List<SchoolClass>> GetSchoolClassesAsync(long countryId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				GetSchoolClasses(countryId));
@@ -87,7 +87,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<MetroStation>> GetMetroStationsByIdAsync(IEnumerable<ulong> stationIds)
+		public Task<List<MetroStation>> GetMetroStationsByIdAsync(IEnumerable<ulong> stationIds)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetMetroStationsById(stationIds));
 		}

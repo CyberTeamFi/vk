@@ -51,7 +51,7 @@ namespace VkNet.Model
 				newsUserListItem.SourceIds = new List<long>();
 			} else
 			{
-				newsUserListItem.SourceIds = sourceIds.ToReadOnlyCollectionOf<long>(selector: x => x);
+				newsUserListItem.SourceIds = sourceIds.ToListOf<long>(selector: x => x);
 			}
 
 			return newsUserListItem;

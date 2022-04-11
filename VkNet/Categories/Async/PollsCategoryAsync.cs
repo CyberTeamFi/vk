@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -48,7 +48,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<GetBackgroundsResult>> GetBackgroundsAsync()
+		public Task<List<GetBackgroundsResult>> GetBackgroundsAsync()
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => GetBackgrounds());
 		}

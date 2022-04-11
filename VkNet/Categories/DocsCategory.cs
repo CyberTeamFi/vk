@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
@@ -51,7 +51,7 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public ReadOnlyCollection<Document> GetById(IEnumerable<Document> docs)
+		public List<Document> GetById(IEnumerable<Document> docs)
 		{
 			foreach (var doc in docs)
 			{
@@ -66,7 +66,7 @@ namespace VkNet.Categories
 
 			var response = _vk.Call("docs.getById", parameters);
 
-			return response.ToReadOnlyCollectionOf<Document>(selector: r => r);
+			return response.ToListOf<Document>(selector: r => r);
 		}
 
 		/// <inheritdoc />
@@ -100,14 +100,14 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		[Pure]
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-		public ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
+		public List<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
 													string captchaKey = null)
 		{
 			return Save(file, title, tags);
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null)
+		public List<Attachment> Save(string file, string title, string tags = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 
@@ -130,13 +130,13 @@ namespace VkNet.Categories
 
 			if (responseArray == null)
 			{
-				return new ReadOnlyCollection<Attachment>(new List<Attachment>
+				return new List<Attachment>(new List<Attachment>
 				{
 					response
 				});
 			}
 
-			return response.ToReadOnlyCollectionOf<Attachment>(r => r);
+			return response.ToListOf<Attachment>(r => r);
 		}
 
 		/// <inheritdoc />

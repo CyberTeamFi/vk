@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 
@@ -51,7 +51,7 @@ namespace VkNet.Model
 		/// Массив структур с разными размерами фотографии.
 		/// </summary>
 		[JsonProperty("images")]
-		public ReadOnlyCollection<Photo> Images { get; set; }
+		public List<Photo> Images { get; set; }
 
 		/// <summary>
 		/// Цена.

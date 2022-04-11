@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -41,7 +41,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Варианты ответов
 		/// </summary>
-		public ReadOnlyCollection<PollAnswer> Answers { get; set; }
+		public List<PollAnswer> Answers { get; set; }
 
 		/// <summary>
 		/// Возможность анонимых ответов
@@ -56,7 +56,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Идентификаторы вариантов ответа, выбранных текущим пользователем.
 		/// </summary>
-		public ReadOnlyCollection<long> AnswerIds { get; set; }
+		public List<long> AnswerIds { get; set; }
 
 		/// <summary>
 		/// Дата завершения опроса в Unixtime. 0, если опрос бессрочный.
@@ -112,7 +112,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Идентификаторы 3 друзей, которые проголосовали в опросе.
 		/// </summary>
-		public ReadOnlyCollection<User> Friends { get; set; }
+		public List<User> Friends { get; set; }
 
 	#region Методы
 
@@ -132,7 +132,7 @@ namespace VkNet.Model.Attachments
 				Votes = response["votes"],
 				AnswerId = response["answer_id"],
 				Anonymous = response["anonymous"],
-				Answers = response["answers"].ToReadOnlyCollectionOf<PollAnswer>(x => x),
+				Answers = response["answers"].ToListOf<PollAnswer>(x => x),
 				IsBoard = response["is_board"],
 				EndDate = response["end_date"],
 				CanVote = response["can_vote"],
@@ -144,8 +144,8 @@ namespace VkNet.Model.Attachments
 				Closed = response["closed"],
 				Photo = response["photo"],
 				Background = response["background"],
-				Friends = response["friends"].ToReadOnlyCollectionOf<User>(x => x),
-				AnswerIds = response["answer_ids"].ToReadOnlyCollectionOf<long>(x => x)
+				Friends = response["friends"].ToListOf<User>(x => x),
+				AnswerIds = response["answer_ids"].ToListOf<long>(x => x)
 			};
 		}
 

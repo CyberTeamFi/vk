@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -133,7 +133,7 @@ namespace VkNet.Model
 		/// (если был передан параметр return_friends = 1.
 		/// </summary>
 		[JsonProperty("friends")]
-		public ReadOnlyCollection<long> Friends { get; set; }
+		public List<long> Friends { get; set; }
 
 		/// <summary>
 		/// 1, если приложение установлено у текущего пользователя.
@@ -182,14 +182,14 @@ namespace VkNet.Model
 				MembersCount = response["members_count"],
 				PublishedDate = response["published_date"],
 				CatalogPosition = response["catalog_position"],
-				Screenshots = response["screenshots"].ToReadOnlyCollectionOf<Photo>(o => o),
+				Screenshots = response["screenshots"].ToListOf<Photo>(o => o),
 				International = response["international"],
 				LeaderBoardType = response["leaderboard_type"],
 				GenreId = response["genre_id"],
 				Genre = response["genre"],
 				PlatformId = response["platform_id"],
 				IsInCatalog = response["is_in_catalog"],
-				Friends = response["friends"].ToReadOnlyCollectionOf<long>(x => x),
+				Friends = response["friends"].ToListOf<long>(x => x),
 				Installed = response["installed"],
 				IsHtml5App = response["is_html_5_app"],
 				PushEnabled = response["push_enabled"],

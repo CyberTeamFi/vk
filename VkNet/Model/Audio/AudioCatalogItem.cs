@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -26,7 +26,7 @@ namespace VkNet.Model
 		/// Идентификатор владельца аудиозаписи.
 		/// </summary>
 		[JsonProperty("image")]
-		public ReadOnlyCollection<AudioCatalogItemImage> Image { get; set; }
+		public List<AudioCatalogItemImage> Image { get; set; }
 
 		/// <summary>
 		/// Идентификатор владельца аудиозаписи.

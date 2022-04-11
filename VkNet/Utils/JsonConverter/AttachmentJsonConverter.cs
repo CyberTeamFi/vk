@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Model.Attachments;
@@ -61,7 +61,7 @@ namespace VkNet.Utils.JsonConverter
 
 			var list = (IList) Activator.CreateInstance(type: constructedListType);
 
-			var vkCollection = typeof(ReadOnlyCollection<>).MakeGenericType(keyType);
+			var vkCollection = typeof(List<>).MakeGenericType(keyType);
 
 			var obj = JArray.Load(reader: reader);
 
@@ -76,7 +76,7 @@ namespace VkNet.Utils.JsonConverter
 		/// <inheritdoc />
 		public override bool CanConvert(Type objectType)
 		{
-			return typeof(ReadOnlyCollection<>).IsAssignableFrom(c: objectType);
+			return typeof(List<>).IsAssignableFrom(c: objectType);
 		}
 	}
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -19,13 +19,13 @@ namespace VkNet.Abstractions
 		bool IsAppUser(long? userId);
 
 		/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(long,ProfileFields,NameCase)"/>
-		ReadOnlyCollection<User> Get([NotNull]
+		List<User> Get([NotNull]
 									IEnumerable<long> userIds
 									, ProfileFields fields = null
 									, NameCase nameCase = null);
 
 		/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(string,ProfileFields,NameCase)"/>
-		ReadOnlyCollection<User> Get([NotNull]
+		List<User> Get([NotNull]
 									IEnumerable<string> screenNames
 									, ProfileFields fields = null
 									, NameCase nameCase = null);

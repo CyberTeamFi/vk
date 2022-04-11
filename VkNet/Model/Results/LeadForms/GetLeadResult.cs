@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -34,7 +34,7 @@ namespace VkNet.Model
 		/// информация об ответах на вопросы — массив структур со следующими полями
 		/// </summary>
 		[JsonProperty("answers")]
-		public ReadOnlyCollection<LeadAnswerInfo> Answers { get; set; }
+		public List<LeadAnswerInfo> Answers { get; set; }
 
 		/// <summary>
 		/// идентификатор рекламного объявления, с которого пришла заявка (поле отсутствует в случае, если заявка пришла не из рекламного объявления).

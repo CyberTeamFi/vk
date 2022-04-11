@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -47,6 +48,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// URL изображения-обложки товара
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri ThumbPhoto { get; set; }
 
 		/// <summary>
@@ -63,7 +65,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Изображения товара
 		/// </summary>
-		public ReadOnlyCollection<Photo> Photos { get; set; }
+		public List<Photo> Photos { get; set; }
 
 		/// <summary>
 		/// Возможность комментировать товар для текущего пользователя
@@ -83,6 +85,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Cсылка на товар во внешних ресурсах.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Url { get; set; }
 
 		/// <summary>
@@ -109,7 +112,7 @@ namespace VkNet.Model
 				ThumbPhoto = response["thumb_photo"],
 				Date = response["date"],
 				Availability = response["availability"],
-				Photos = response["photos"].ToReadOnlyCollectionOf<Photo>(x => x),
+				Photos = response["photos"].ToListOf<Photo>(x => x),
 				CanComment = response["can_comment"],
 				CanRepost = response["can_repost"],
 				Likes = response["likes"],

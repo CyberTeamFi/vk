@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
@@ -152,7 +152,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields,
+		public List<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields,
 												bool skipAuthorization = false)
 		{
 			var parameters = new VkParameters
@@ -163,7 +163,7 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call("groups.getById", parameters, skipAuthorization)
-				.ToReadOnlyCollectionOf<Group>(x => x);
+				.ToListOf<Group>(x => x);
 		}
 
 		/// <inheritdoc />
@@ -203,7 +203,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
+		public List<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
 														bool skipAuthorization = false)
 		{
 			if (userId.HasValue)
@@ -243,7 +243,7 @@ namespace VkNet.Categories
 
 			var result = _vk.Call("groups.isMember", parameters, skipAuthorization);
 
-			return result.ToReadOnlyCollectionOf<GroupMember>(x => x);
+			return result.ToListOf<GroupMember>(x => x);
 		}
 
 		/// <inheritdoc />

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Text;
 using VkNet.Abstractions;
 using VkNet.Model;
@@ -132,9 +132,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<GetBackgroundsResult> GetBackgrounds()
+		public List<GetBackgroundsResult> GetBackgrounds()
 		{
-			return _vk.Call<ReadOnlyCollection<GetBackgroundsResult>>("polls.getBackgrounds",
+			return _vk.Call<List<GetBackgroundsResult>>("polls.getBackgrounds",
 				new VkParameters());
 		}
 

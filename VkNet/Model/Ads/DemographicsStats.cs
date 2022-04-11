@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -33,25 +33,25 @@ namespace VkNet.Model
 		/// обязательный параметр, строка
 		/// </summary>
 		[JsonProperty("sex")]
-		public ReadOnlyCollection<StatsSexAgeCities> Sex { get; set; }
+		public List<StatsSexAgeCities> Sex { get; set; }
 
 		/// <summary>
 		/// обязательный параметр, строка
 		/// </summary>
 		[JsonProperty("age")]
-		public ReadOnlyCollection<StatsSexAgeCities> Age { get; set; }
+		public List<StatsSexAgeCities> Age { get; set; }
 
 		/// <summary>
 		/// обязательный параметр, строка
 		/// </summary>
 		[JsonProperty("sex_age")]
-		public ReadOnlyCollection<StatsSexAgeCities> SexAge { get; set; }
+		public List<StatsSexAgeCities> SexAge { get; set; }
 
 		/// <summary>
 		/// обязательный параметр, строка
 		/// </summary>
 		[JsonProperty("cities")]
-		public ReadOnlyCollection<StatsSexAgeCities> Cities { get; set; }
+		public List<StatsSexAgeCities> Cities { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -65,10 +65,10 @@ namespace VkNet.Model
 				Day = response["day"],
 				Month = response["month"],
 				OverAll = response["overall"],
-				Sex = response["sex"].ToReadOnlyCollectionOf<StatsSexAgeCities>(x=>x),
-				SexAge = response["sex_age"].ToReadOnlyCollectionOf<StatsSexAgeCities>(x=>x),
-				Age = response["age"].ToReadOnlyCollectionOf<StatsSexAgeCities>(x=>x),
-				Cities = response["cities"].ToReadOnlyCollectionOf<StatsSexAgeCities>(x=>x)
+				Sex = response["sex"].ToListOf<StatsSexAgeCities>(x=>x),
+				SexAge = response["sex_age"].ToListOf<StatsSexAgeCities>(x=>x),
+				Age = response["age"].ToListOf<StatsSexAgeCities>(x=>x),
+				Cities = response["cities"].ToListOf<StatsSexAgeCities>(x=>x)
 			};
 		}
 	}

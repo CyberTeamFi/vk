@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
@@ -77,7 +77,7 @@ namespace VkNet.Model
 		/// Список доступных размеров аудитории для сохранения.
 		/// </summary>
 		[JsonProperty(propertyName: "save_audience_levels")]
-		public ReadOnlyCollection<SaveAudienceLevels> SaveAudienceLevels { get; set; }
+		public List<SaveAudienceLevels> SaveAudienceLevels { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -97,7 +97,7 @@ namespace VkNet.Model
 				ScheduledDeleteTime = response["scheduled_delete_time"],
 				SourceRetargetingGroupId = response["source_retargeting_group_id"],
 				AudienceCount = response["audience_count"],
-				SaveAudienceLevels = response["save_audience_levels"].ToReadOnlyCollectionOf<SaveAudienceLevels>(x=>x)
+				SaveAudienceLevels = response["save_audience_levels"].ToListOf<SaveAudienceLevels>(x=>x)
 			};
 		}
 	}

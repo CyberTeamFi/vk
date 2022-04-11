@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -17,12 +17,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// </summary>
 		[JsonProperty(propertyName: "items")]
-		public ReadOnlyCollection<LeaderboardItem> Items { get; set; }
+		public List<LeaderboardItem> Items { get; set; }
 
 		/// <summary>
 		/// </summary>
 		[JsonProperty(propertyName: "profiles")]
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 	}
 
 	/// <summary>

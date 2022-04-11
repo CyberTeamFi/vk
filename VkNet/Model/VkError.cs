@@ -1,6 +1,8 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -32,7 +34,7 @@ namespace VkNet.Model
 		/// Параметры запроса
 		/// </summary>
 		[JsonProperty("request_params")]
-		public ReadOnlyCollection<RequestParam> RequestParams { get; set; }
+		public List<RequestParam> RequestParams { get; set; }
 
 		/// <summary>
 		/// Идентификатор капчи
@@ -44,12 +46,14 @@ namespace VkNet.Model
 		/// Ссылка на изображение капчи
 		/// </summary>
 		[JsonProperty("captcha_img", NullValueHandling = NullValueHandling.Ignore)]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri CaptchaImg { get; set; }
 
 		/// <summary>
 		/// Адрес который необходимо открыть в браузере для подтверждения валидации.
 		/// </summary>
 		[JsonProperty("redirect_uri", NullValueHandling = NullValueHandling.Ignore)]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri RedirectUri { get; set; }
 	}
 }

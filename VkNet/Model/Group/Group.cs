@@ -1,6 +1,7 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Diagnostics;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -81,8 +82,8 @@ namespace VkNet.Model
 				Activity = response["activity"],
 				Status = response["status"],
 				StatusAudio = response["status_audio"],
-				Contacts = response["contacts"].ToReadOnlyCollectionOf<Contact>(x => x),
-				Links = response["links"].ToReadOnlyCollectionOf<ExternalLink>(x => x),
+				Contacts = response["contacts"].ToListOf<Contact>(x => x),
+				Links = response["links"].ToListOf<ExternalLink>(x => x),
 				FixedPost = response["fixed_post"],
 				Verified = response["verified"],
 				Site = response["site"],
@@ -178,18 +179,21 @@ namespace VkNet.Model
 		/// <c>Uri</c> фотографии сообщества с размером 50x50px
 		/// </summary>
 		[JsonProperty("photo_50")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
 		/// <c>Uri</c> фотографии сообщества с размером 100x100px
 		/// </summary>
 		[JsonProperty("photo_100")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
 		/// <c>Uri</c> фотографии сообщества с размером 200x200px
 		/// </summary>
 		[JsonProperty("photo_200")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo200 { get; set; }
 
 	#endregion
@@ -271,7 +275,7 @@ namespace VkNet.Model
 		/// Информация из блока контактов публичной страницы.
 		/// </summary>
 		[JsonProperty("contacts")]
-		public ReadOnlyCollection<Contact> Contacts { get; set; }
+		public List<Contact> Contacts { get; set; }
 
 		/// <summary>
 		/// Счетчики сообщества.
@@ -344,7 +348,7 @@ namespace VkNet.Model
 		/// Информация из блока ссылок сообщества.
 		/// </summary>
 		[JsonProperty("links")]
-		public ReadOnlyCollection<ExternalLink> Links { get; set; }
+		public List<ExternalLink> Links { get; set; }
 
 		/// <summary>
 		/// Идентификатор основного альбома сообщества.

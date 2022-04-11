@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Infrastructure;
@@ -54,6 +55,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_130")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo130 { get; set; }
 
 		/// <summary>
@@ -61,6 +63,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_320")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo320 { get; set; }
 
 		/// <summary>

@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Category;
 using VkNet.Model;
@@ -73,9 +73,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<LeadFormsGetLeadResult> GetLeads(long groupId, long formId, string nextPageToken, ulong? limit = null)
+		public List<LeadFormsGetLeadResult> GetLeads(long groupId, long formId, string nextPageToken, ulong? limit = null)
 		{
-			return _vk.Call<ReadOnlyCollection<LeadFormsGetLeadResult>>("leadForms.getLeads",
+			return _vk.Call<List<LeadFormsGetLeadResult>>("leadForms.getLeads",
 				new VkParameters
 				{
 					{ "group_id", groupId },
@@ -92,9 +92,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<LeadFormCreateResult> List(long groupId)
+		public List<LeadFormCreateResult> List(long groupId)
 		{
-			return _vk.Call<ReadOnlyCollection<LeadFormCreateResult>>("leadForms.list",
+			return _vk.Call<List<LeadFormCreateResult>>("leadForms.list",
 				new VkParameters
 				{
 					{ "group_id", groupId }

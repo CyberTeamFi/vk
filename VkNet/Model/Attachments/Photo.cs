@@ -1,5 +1,6 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -49,24 +50,27 @@ namespace VkNet.Model.Attachments
 		/// Размеры фотографий.
 		/// </summary>
 		[JsonProperty("sizes")]
-		public ReadOnlyCollection<PhotoSize> Sizes { get; set; }
+		public List<PhotoSize> Sizes { get; set; }
 
 		/// <summary>
 		/// <c>Uri</c> фотографии с максимальным размером 50x50px.
 		/// </summary>
 		[JsonProperty("photo_50")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
 		/// <c>Uri</c> фотографии с максимальным размером 75x75px.
 		/// </summary>
 		[JsonProperty("photo_75")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo75 { get; set; }
 
 		/// <summary>
 		/// <c>Uri</c> фотографии с максимальным размером 100x100px.
 		/// </summary>
 		[JsonProperty("photo_100")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
@@ -167,7 +171,7 @@ namespace VkNet.Model.Attachments
 				SmallPhotoSrc = response["src_small"],
 				Latitude = response["lat"],
 				Longitude = response["long"],
-				Sizes = response["sizes"].ToReadOnlyCollectionOf<PhotoSize>(x => x)
+				Sizes = response["sizes"].ToListOf<PhotoSize>(x => x)
 			};
 
 			return photo;

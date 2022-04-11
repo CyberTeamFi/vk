@@ -49,7 +49,7 @@ namespace VkNet.Model
 		{
 			return new ClientInfo
 			{
-				ButtonActions = response["button_actions"].ToReadOnlyCollectionOf<KeyboardButtonActionType>(x => x),
+				ButtonActions = response["button_actions"].ToListOf<KeyboardButtonActionType>(x => x),
 				Keyboard = response["keyboard"],
 				InlineKeyboard = response["inline_keyboard"],
 				LangId = response["lang_id"].ToEnum<Language>()

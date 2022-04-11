@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -21,19 +21,19 @@ namespace VkNet.Model
 		/// Личные сообщения
 		/// </summary>
 		[JsonProperty("items")]
-		public ReadOnlyCollection<Message> Items { get; set; }
+		public List<Message> Items { get; set; }
 
 		/// <summary>
 		/// Профили пользователей
 		/// </summary>
 		[JsonProperty("profiles")]
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Сообщества
 		/// </summary>
 		[JsonProperty("groups")]
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public List<Group> Groups { get; set; }
 
 		/// <summary>
 		/// Беседы

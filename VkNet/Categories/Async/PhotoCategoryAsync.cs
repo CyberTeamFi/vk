@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
@@ -45,7 +45,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Photo>> GetByIdAsync(IEnumerable<string> photos
+		public Task<List<Photo>> GetByIdAsync(IEnumerable<string> photos
 															, bool? extended = null
 															, bool? photoSizes = null
 															, bool skipAuthorization = false)
@@ -92,7 +92,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Photo>> SaveWallPhotoAsync(string response
+		public Task<List<Photo>> SaveWallPhotoAsync(string response
 																, ulong? userId
 																, ulong? groupId = null
 																, string caption = null)
@@ -114,7 +114,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Photo>> SaveMessagesPhotoAsync(string response)
+		public Task<List<Photo>> SaveMessagesPhotoAsync(string response)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => SaveMessagesPhoto(response: response));
 		}
@@ -157,7 +157,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Photo>> SaveAsync(PhotoSaveParams @params)
+		public Task<List<Photo>> SaveAsync(PhotoSaveParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => Save(@params: @params));
 		}
@@ -281,7 +281,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Tag>> GetTagsAsync(ulong photoId, long? ownerId = null, string accessKey = null)
+		public Task<List<Tag>> GetTagsAsync(ulong photoId, long? ownerId = null, string accessKey = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
 				GetTags(photoId, ownerId, accessKey));
@@ -323,13 +323,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Photo>> SaveMarketPhotoAsync(long groupId, string response)
+		public Task<List<Photo>> SaveMarketPhotoAsync(long groupId, string response)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => SaveMarketPhoto(groupId, response));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Photo>> SaveMarketAlbumPhotoAsync(long groupId, string response)
+		public Task<List<Photo>> SaveMarketAlbumPhotoAsync(long groupId, string response)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => SaveMarketAlbumPhoto(groupId, response));
 		}

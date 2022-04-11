@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -23,7 +23,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<StreamingStats>> GetStatsAsync(string type
+		public Task<List<StreamingStats>> GetStatsAsync(string type
 																			, string interval
 																			, DateTime? startTime = null
 																			, DateTime? endTime = null)

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -18,16 +18,16 @@ namespace VkNet.Abstractions
 		VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false);
 
 		/// <inheritdoc cref="IFriendsCategoryAsync.GetAppUsersAsync" />
-		ReadOnlyCollection<long> GetAppUsers();
+		List<long> GetAppUsers();
 
 		/// <inheritdoc cref="IFriendsCategoryAsync.GetOnlineAsync" />
 		FriendOnline GetOnline(FriendsGetOnlineParams @params);
 
 		/// <inheritdoc cref="IFriendsCategoryAsync.GetMutualAsync" />
-		ReadOnlyCollection<MutualFriend> GetMutual(FriendsGetMutualParams @params);
+		List<MutualFriend> GetMutual(FriendsGetMutualParams @params);
 
 		/// <inheritdoc cref="IFriendsCategoryAsync.AreFriendsAsync" />
-		ReadOnlyCollection<AreFriendsResult> AreFriends([NotNull] IEnumerable<long> userIds, bool? needSign = null);
+		List<AreFriendsResult> AreFriends([NotNull] IEnumerable<long> userIds, bool? needSign = null);
 
 		/// <inheritdoc cref="IFriendsCategoryAsync.AddListAsync" />
 		long AddList(string name, IEnumerable<long> userIds);
@@ -59,7 +59,7 @@ namespace VkNet.Abstractions
 		bool Edit(long userId, IEnumerable<long> listIds);
 
 		/// <inheritdoc cref="IFriendsCategoryAsync.GetRecentAsync" />
-		ReadOnlyCollection<long> GetRecent(long? count = null);
+		List<long> GetRecent(long? count = null);
 
 		/// <inheritdoc cref="IFriendsCategoryAsync.GetRequestsAsync" />
 		GetRequestsResult GetRequests(FriendsGetRequestsParams @params);
@@ -72,7 +72,7 @@ namespace VkNet.Abstractions
 										NameCase nameCase = null);
 
 		/// <inheritdoc cref="IFriendsCategoryAsync.GetByPhonesAsync" />
-		ReadOnlyCollection<User> GetByPhones(IEnumerable<string> phones, ProfileFields fields);
+		List<User> GetByPhones(IEnumerable<string> phones, ProfileFields fields);
 
 		/// <inheritdoc cref="IFriendsCategoryAsync.SearchAsync" />
 		VkCollection<User> Search(FriendsSearchParams @params);

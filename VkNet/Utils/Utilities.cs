@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Exception;
@@ -13,6 +14,20 @@ namespace VkNet.Utils
 	/// </summary>
 	public static class Utilities
 	{
+		private static class DefaultEnum<TEnum> where TEnum: Enum, IConvertible
+		{
+			public static TEnum DefaultValue { get; }
+		#pragma warning disable S3963
+			static DefaultEnum()
+			{
+				var @default = typeof(TEnum)
+					.GetFields(BindingFlags.Public|BindingFlags.Static)
+					.FirstOrDefault(m => m.GetCustomAttributes<DefaultValueAttribute>().Any());
+
+				if (@default != null) DefaultValue = (TEnum) @default.GetValue(null);
+			}
+		#pragma warning restore S3963
+		}
 		/// <summary>
 		/// Преобразовать в перечисление из числа.
 		/// </summary>
@@ -21,11 +36,11 @@ namespace VkNet.Utils
 		/// <returns> Перечисление указанного типа. </returns>
 		/// <exception cref="System.ArgumentException"> value </exception>
 		public static T EnumFrom<T>(int value)
-			where T : IConvertible
+			where T : Enum, IConvertible
 		{
 			if (!Enum.IsDefined(typeof(T), value))
 			{
-				throw new ArgumentException($"Enum value {value} not defined!", nameof(value));
+				return DefaultEnum<T>.DefaultValue;
 			}
 
 			return (T) (object) value;

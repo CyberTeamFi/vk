@@ -1,7 +1,9 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -36,6 +38,7 @@ namespace VkNet.Model
 		/// Абсолютный адрес страницы;
 		/// </summary>
 		[JsonProperty(propertyName: "url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Url { get; set; }
 
 		/// <summary>

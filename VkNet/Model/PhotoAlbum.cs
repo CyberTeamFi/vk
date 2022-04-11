@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
@@ -60,12 +60,12 @@ namespace VkNet.Model
 		/// Настройки приватности для альбома в формате настроек приватности; (не приходит
 		/// для системных альбомов)
 		/// </summary>
-		public ReadOnlyCollection<Privacy> PrivacyView { get; set; }
+		public List<Privacy> PrivacyView { get; set; }
 
 		/// <summary>
 		/// Настройки приватности для комментирования альбома
 		/// </summary>
-		public ReadOnlyCollection<Privacy> PrivacyComment { get; set; }
+		public List<Privacy> PrivacyComment { get; set; }
 
 		/// <summary>
 		/// Может ли текущий пользователь добавлять фотографии в альбом
@@ -122,11 +122,11 @@ namespace VkNet.Model
 					, Created = response[key: "created"]
 					, Updated = response[key: "updated"]
 					, Size = response[key: "size"]
-					, PrivacyView = privacy.ToReadOnlyCollectionOf<Privacy>(selector: x => x)
-					, PrivacyComment = privacyComment.ToReadOnlyCollectionOf<Privacy>(selector: x => x)
+					, PrivacyView = privacy.ToListOf<Privacy>(selector: x => x)
+					, PrivacyComment = privacyComment.ToListOf<Privacy>(selector: x => x)
 					, CanUpload = response[key: "can_upload"]
 					, ThumbSrc = response[key: "thumb_src"]
-					, Sizes = response[key: "sizes"].ToReadOnlyCollectionOf<PhotoSize>(selector: x => x)
+					, Sizes = response[key: "sizes"].ToListOf<PhotoSize>(selector: x => x)
 					, CommentsDisabled = response[key: "comments_disabled"]
 					, UploadByAdminsOnly = response[key: "upload_by_admins_only"]
 					, ThumbIsLast = response[key: "thumb_is_last"]

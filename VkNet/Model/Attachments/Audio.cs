@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -46,6 +47,7 @@ namespace VkNet.Model.Attachments
 		/// Ссылка на аудиозапись (привязана к ip-адресу клиентского приложения).
 		/// </summary>
 		[JsonProperty("url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Url { get; set; }
 
 		/// <summary>
@@ -70,12 +72,14 @@ namespace VkNet.Model.Attachments
 		/// Жанр аудиозаписи.
 		/// </summary>
 		[JsonProperty("track_genre_id")]
+		[DynamoDBProperty(typeof(DynamoNullableEnumConverter<AudioGenre>))]
 		public AudioGenre? TrackGenre { get; set; }
 
 		/// <summary>
 		/// Жанр аудиозаписи.
 		/// </summary>
 		[JsonProperty("genre_id")]
+		[DynamoDBProperty(typeof(DynamoNullableEnumConverter<AudioGenre>))]
 		public AudioGenre? Genre { get; set; }
 
 		/// <summary>
@@ -118,13 +122,13 @@ namespace VkNet.Model.Attachments
 		/// Список главных исполнителей.
 		/// </summary>
 		[JsonProperty("main_artists")]
-		public IEnumerable<AudioArtist> MainArtists { get; set; }
+		public List<AudioArtist> MainArtists { get; set; }
 
 		/// <summary>
 		/// Список второстепенных исполнителей.
 		/// </summary>
 		[JsonProperty("featured_artists")]
-		public IEnumerable<AudioArtist> FeaturedArtists { get; set; }
+		public List<AudioArtist> FeaturedArtists { get; set; }
 
 		/// <summary>
 		/// Подзаголовок(?)  композиции.
@@ -164,8 +168,8 @@ namespace VkNet.Model.Attachments
 				IsExplicit = response["is_explicit"],
 				Genre = response["genre_id"] ?? response["genre"],
 				Date = response["date"],
-				MainArtists = response["main_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
-				FeaturedArtists = response["featured_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
+				MainArtists = response["main_artists"].ToListOf<AudioArtist>(x => x),
+				FeaturedArtists = response["featured_artists"].ToListOf<AudioArtist>(x => x),
 				Subtitle = response["subtitle"]
 			};
 		}

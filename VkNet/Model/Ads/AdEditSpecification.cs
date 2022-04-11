@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -148,6 +149,7 @@ namespace VkNet.Model
 		/// http://vk.cоm/club1
 		/// </summary>
 		[JsonProperty(propertyName: "link_url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri LinkUrl { get; set; }
 
 		/// <summary>
@@ -155,18 +157,21 @@ namespace VkNet.Model
 		/// yoursite.cоm
 		/// </summary>
 		[JsonProperty(propertyName: "link_domain")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri LinkDomain { get; set; }
 
 		/// <summary>
 		/// Заголовок рядом с кнопкой.
 		/// </summary>
 		[JsonProperty(propertyName: "link_title")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri LinkTitle { get; set; }
 
 		/// <summary>
 		/// Идентификатор кнопки объявления.
 		/// </summary>
 		[JsonProperty(propertyName: "link_button")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri LinkButton { get; set; }
 
 		/// <summary>

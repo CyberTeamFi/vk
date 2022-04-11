@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace VkNet.Model
 {
@@ -17,16 +17,16 @@ namespace VkNet.Model
 		/// <summary>
 		/// Массив комментариев.
 		/// </summary>
-		public ReadOnlyCollection<CommentBoard> Items { get; set; }
+		public List<CommentBoard> Items { get; set; }
 
 		/// <summary>
 		/// Информация о пользователях, которые находятся в списке комментариев.
 		/// </summary>
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Информация о группах, которые находятся в списке комментариев.
 		/// </summary>
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public List<Group> Groups { get; set; }
 	}
 }

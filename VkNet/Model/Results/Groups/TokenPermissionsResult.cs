@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -20,6 +20,6 @@ namespace VkNet.Model
 		/// Права доступа
 		/// </summary>
 		[JsonProperty("permissions")]
-		public ReadOnlyCollection<TokenPermission> Permissions { get; set; }
+		public List<TokenPermission> Permissions { get; set; }
 	}
 }

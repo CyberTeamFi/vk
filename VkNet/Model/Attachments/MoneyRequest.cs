@@ -1,4 +1,5 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -41,6 +42,7 @@ namespace VkNet.Model.Attachments
 		/// Ссылка на выставленный счет
 		/// </summary>
 		[JsonProperty("init_url")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri InitUrl { get; set; }
 
 		/// <summary>

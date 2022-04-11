@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Utils;
@@ -23,9 +23,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<StatsPeriod> Get(StatsGetParams getParams)
+		public List<StatsPeriod> Get(StatsGetParams getParams)
 		{
-			return _vk.Call<ReadOnlyCollection<StatsPeriod>>("stats.get",
+			return _vk.Call<List<StatsPeriod>>("stats.get",
 				new VkParameters
 				{
 					{ "interval", getParams.Interval },

@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 
@@ -21,7 +21,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stats.get
 		/// </remarks>
-		Task<ReadOnlyCollection<StatsPeriod>> GetAsync(StatsGetParams getParams);
+		Task<List<StatsPeriod>> GetAsync(StatsGetParams getParams);
 
 		/// <summary>
 		/// Добавляет данные о текущем сеансе в статистику посещаемости приложения..

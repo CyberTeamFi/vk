@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -24,7 +24,7 @@ namespace VkNet.Model
 		/// Только для метода wall.getComments
 		/// </remarks>
 		[JsonProperty("items")]
-		public ReadOnlyCollection<Comment> Items { get; set; }
+		public List<Comment> Items { get; set; }
 
 		/// <summary>
 		/// Может ли текущий пользователь оставлять комментарии в этой ветке
@@ -54,7 +54,7 @@ namespace VkNet.Model
 			return new CommentThread
 			{
 				Count = response["count"],
-				Items = response["items"].ToReadOnlyCollectionOf<Comment>(x => x),
+				Items = response["items"].ToListOf<Comment>(x => x),
 				CanPost = response["can_post"],
 				ShowReplyButton = response["show_reply_button"],
 				GroupsCanPost = response["groups_can_post"]

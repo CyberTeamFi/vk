@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -270,7 +270,7 @@ namespace VkNet.Abstractions
 		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.send
 		/// </remarks>
-		Task<ReadOnlyCollection<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params);
+		Task<List<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params);
 
 		/// <summary>
 		/// Восстанавливает удаленное сообщение.
@@ -413,7 +413,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getChat
 		/// </remarks>
-		Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
+		Task<List<Chat>> GetChatAsync(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
 
 		/// <summary>
 		/// Получает данные для превью чата с приглашением по ссылке.
@@ -555,7 +555,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportant
 		/// </remarks>
-		Task<ReadOnlyCollection<long>> MarkAsImportantAsync([NotNull] IEnumerable<long> messageIds, bool important = true);
+		Task<List<long>> MarkAsImportantAsync([NotNull] IEnumerable<long> messageIds, bool important = true);
 
 		/// <summary>
 		/// Отправляет стикер.
@@ -590,7 +590,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/messages.getHistoryAttachments
 		/// </remarks>
-		Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params);
+		Task<List<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params);
 
 		/// <summary>
 		/// Получает ссылку для приглашения пользователя в беседу.
@@ -1183,7 +1183,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
 		/// </remarks>
 		[Obsolete(ObsoleteText.MessageGetChatUsers)]
-		Task<ReadOnlyCollection<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+		Task<List<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
 
 		/// <summary>
 		/// Возвращает список диалогов аккаунта

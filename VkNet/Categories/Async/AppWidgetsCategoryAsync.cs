@@ -1,4 +1,5 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -34,7 +35,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<AppImage>> GetImagesByIdAsync(string images)
+		public Task<List<AppImage>> GetImagesByIdAsync(string images)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetImagesById(images));
 		}

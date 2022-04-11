@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -13,7 +13,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// ������ ������������.
 		/// </summary>
-		public ReadOnlyCollection<Comment> Comments { get; set; }
+		public List<Comment> Comments { get; set; }
 
 		/// <summary>
 		/// ���������� ������������.
@@ -23,12 +23,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// ������ �������������.
 		/// </summary>
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// ������ ���������.
 		/// </summary>
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public List<Group> Groups { get; set; }
 
 		/// <summary>
 		/// ��������� �� json.
@@ -39,10 +39,10 @@ namespace VkNet.Model
 		{
 			var item = new MarketComment
 			{
-				Comments = response["items"].ToReadOnlyCollectionOf<Comment>(x => x),
+				Comments = response["items"].ToListOf<Comment>(x => x),
 				Count = response["count"],
-				Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(x => x),
-				Groups = response["groups"].ToReadOnlyCollectionOf<Group>(x => x)
+				Profiles = response["profiles"].ToListOf<User>(x => x),
+				Groups = response["groups"].ToListOf<Group>(x => x)
 			};
 
 			return item;

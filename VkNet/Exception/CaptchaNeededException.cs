@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -32,6 +33,7 @@ namespace VkNet.Exception
 		/// <summary>
 		/// Uri-адрес изображения с капчей
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Img { get; }
 	}
 }

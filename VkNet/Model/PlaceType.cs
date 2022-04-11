@@ -1,5 +1,7 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -25,6 +27,7 @@ namespace VkNet.Model
 		/// URL адрес к иконке
 		/// </summary>
 		[JsonProperty("icon")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Icon { get; set; }
 	}
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -15,13 +15,13 @@ namespace VkNet.Model
 		/// Массив объектов описывающих устаревшие тематики
 		/// </summary>
 		[JsonProperty("v1")]
-		public ReadOnlyCollection<AdsCategories> V1 { get; set; }
+		public List<AdsCategories> V1 { get; set; }
 
 		/// <summary>
 		/// Массив объектов описывающих актуальные тематики
 		/// </summary>
 		[JsonProperty("v2")]
-		public ReadOnlyCollection<AdsCategories> V2 { get; set; }
+		public List<AdsCategories> V2 { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -32,8 +32,8 @@ namespace VkNet.Model
 		{
 			return new GetCategoriesResult
 			{
-				V1 = response["v1"].ToReadOnlyCollectionOf<AdsCategories>(x=>x),
-				V2 = response["v2"].ToReadOnlyCollectionOf<AdsCategories>(x=>x)
+				V1 = response["v1"].ToListOf<AdsCategories>(x=>x),
+				V2 = response["v2"].ToListOf<AdsCategories>(x=>x)
 			};
 		}
 	}

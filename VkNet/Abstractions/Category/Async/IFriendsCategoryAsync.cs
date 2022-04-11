@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Enums;
@@ -48,7 +48,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.getAppUsers
 		/// </remarks>
-		Task<ReadOnlyCollection<long>> GetAppUsersAsync();
+		Task<List<long>> GetAppUsersAsync();
 
 		/// <summary>
 		/// Возвращает список идентификаторов друзей пользователя, находящихся на сайте.
@@ -79,7 +79,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.getMutual
 		/// </remarks>
-		Task<ReadOnlyCollection<MutualFriend>> GetMutualAsync(FriendsGetMutualParams @params);
+		Task<List<MutualFriend>> GetMutualAsync(FriendsGetMutualParams @params);
 
 		/// <summary>
 		/// Возвращает информацию о том, добавлен ли текущий пользователь в друзья у
@@ -118,7 +118,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.areFriends
 		/// </remarks>
-		Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync([NotNull] IEnumerable<long> userIds
+		Task<List<AreFriendsResult>> AreFriendsAsync([NotNull] IEnumerable<long> userIds
 																	, bool? needSign = null);
 
 		/// <summary>
@@ -332,7 +332,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.getRecent
 		/// </remarks>
-		Task<ReadOnlyCollection<long>> GetRecentAsync(long? count = null);
+		Task<List<long>> GetRecentAsync(long? count = null);
 
 		/// <summary>
 		/// Возвращает информацию о полученных или отправленных заявках на добавление в
@@ -461,7 +461,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.getByPhones
 		/// </remarks>
-		Task<ReadOnlyCollection<User>> GetByPhonesAsync(IEnumerable<string> phones, ProfileFields fields);
+		Task<List<User>> GetByPhonesAsync(IEnumerable<string> phones, ProfileFields fields);
 
 		/// <summary>
 		/// Позволяет искать по списку друзей пользователей.

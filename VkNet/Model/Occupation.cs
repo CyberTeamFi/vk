@@ -1,4 +1,5 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -26,6 +27,7 @@ namespace VkNet.Model
 		/// Информация о текущем роде занятия пользователя.
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		[DynamoDBProperty(typeof(DynamoSafetyEnumConverter<OccupationType>))]
 		public OccupationType Type { get; set; }
 
 		/// <summary>

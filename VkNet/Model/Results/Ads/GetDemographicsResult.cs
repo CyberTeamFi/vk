@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -23,7 +23,7 @@ namespace VkNet.Model
 		/// обязательный параметр, строка
 		/// </summary>
 		[JsonProperty("stats")]
-		public ReadOnlyCollection<DemographicsStats> Stats { get; set; }
+		public List<DemographicsStats> Stats { get; set; }
 
 		/// <summary>
 		/// обязательный параметр, строка
@@ -43,7 +43,7 @@ namespace VkNet.Model
 			{
 				Id = response["id"],
 				Type = response["type"],
-				Stats = response["stats"].ToReadOnlyCollectionOf<DemographicsStats>(x=>x)
+				Stats = response["stats"].ToListOf<DemographicsStats>(x=>x)
 			};
 		}
 	}

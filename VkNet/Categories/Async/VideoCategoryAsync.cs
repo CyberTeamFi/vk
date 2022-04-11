@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -162,13 +162,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<VideoCatalog>> GetCatalogAsync(VideoGetCatalogParams @params)
+		public Task<List<VideoCatalog>> GetCatalogAsync(VideoGetCatalogParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetCatalog(@params));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<VideoCatalogItem>> GetCatalogSectionAsync(string sectionId, string from, long? count = null,
+		public Task<List<VideoCatalogItem>> GetCatalogSectionAsync(string sectionId, string from, long? count = null,
 																				bool? extended = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetCatalogSection(sectionId, from, count, extended));

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
@@ -51,11 +51,11 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public ReadOnlyCollection<long> GetAppUsers()
+		public List<long> GetAppUsers()
 		{
 			VkResponseArray response = _vk.Call("friends.getAppUsers", VkParameters.Empty);
 
-			return response.ToReadOnlyCollectionOf<long>(x => x);
+			return response.ToListOf<long>(x => x);
 		}
 
 		/// <inheritdoc />
@@ -75,7 +75,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<MutualFriend> GetMutual(FriendsGetMutualParams @params)
+		public List<MutualFriend> GetMutual(FriendsGetMutualParams @params)
 		{
 			if (@params.TargetUid.HasValue)
 			{
@@ -91,12 +91,12 @@ namespace VkNet.Categories
 				{ "offset", @params.Offset }
 			});
 
-			return response.ToReadOnlyCollectionOf<MutualFriend>(x => x);
+			return response.ToListOf<MutualFriend>(x => x);
 		}
 
 		/// <inheritdoc />
 		[Pure]
-		public ReadOnlyCollection<AreFriendsResult> AreFriends(IEnumerable<long> userIds, bool? needSign = null)
+		public List<AreFriendsResult> AreFriends(IEnumerable<long> userIds, bool? needSign = null)
 		{
 			if (userIds == null)
 			{
@@ -110,7 +110,7 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call("friends.areFriends", parameters)
-				.ToReadOnlyCollectionOf<AreFriendsResult>(x => x);
+				.ToListOf<AreFriendsResult>(x => x);
 		}
 
 		/// <inheritdoc />
@@ -224,7 +224,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<long> GetRecent(long? count = null)
+		public List<long> GetRecent(long? count = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 
@@ -235,7 +235,7 @@ namespace VkNet.Categories
 
 			VkResponseArray response = _vk.Call("friends.getRecent", parameters);
 
-			return response.ToReadOnlyCollectionOf<long>(x => x);
+			return response.ToListOf<long>(x => x);
 		}
 
 		/// <inheritdoc />
@@ -289,7 +289,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<User> GetByPhones(IEnumerable<string> phones, ProfileFields fields)
+		public List<User> GetByPhones(IEnumerable<string> phones, ProfileFields fields)
 		{
 			var parameters = new VkParameters
 			{
@@ -297,7 +297,7 @@ namespace VkNet.Categories
 				{ "fields", fields }
 			};
 
-			return _vk.Call("friends.getByPhones", parameters).ToReadOnlyCollectionOf<User>(x => x);
+			return _vk.Call("friends.getByPhones", parameters).ToListOf<User>(x => x);
 		}
 
 		/// <inheritdoc />

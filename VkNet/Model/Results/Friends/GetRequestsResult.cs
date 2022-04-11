@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -20,7 +20,7 @@ namespace VkNet.Model
 		/// User ID's
 		/// </summary>
 		[JsonProperty(propertyName: "items")]
-		public ReadOnlyCollection<long> Items { get; set; }
+		public List<long> Items { get; set; }
 
 		/// <summary>
 		/// Total unread requests number

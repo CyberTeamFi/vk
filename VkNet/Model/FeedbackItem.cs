@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils.JsonConverter;
@@ -49,7 +49,7 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("attachments")]
 		[JsonConverter(typeof(AttachmentJsonConverter))]
-		public ReadOnlyCollection<Attachment> Attachments { get; set; }
+		public List<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Находится в записях со стен, в которых имеется информация о местоположении

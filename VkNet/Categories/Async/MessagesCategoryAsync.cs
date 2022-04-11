@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
@@ -196,7 +196,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params)
+		public Task<List<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SendToUserIds(@params));
 		}
@@ -235,7 +235,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds
+		public Task<List<Chat>> GetChatAsync(IEnumerable<long> chatIds
 															, ProfileFields fields = null
 															, NameCase nameCase = null)
 		{
@@ -250,7 +250,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
+		public Task<List<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				GetChatUsers(chatIds, fields, nameCase));
@@ -294,7 +294,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<long>> MarkAsImportantAsync(IEnumerable<long> messageIds, bool important = true)
+		public Task<List<long>> MarkAsImportantAsync(IEnumerable<long> messageIds, bool important = true)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				MarkAsImportant(messageIds, important));
@@ -307,7 +307,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params)
+		public Task<List<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				GetHistoryAttachments(@params, out var _));

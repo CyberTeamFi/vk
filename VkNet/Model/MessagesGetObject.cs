@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -33,7 +33,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Диалоги
 		/// </summary>
-		public ReadOnlyCollection<Message> Messages { get; set; }
+		public List<Message> Messages { get; set; }
 
 		/// <summary>
 		/// Идентификатор последнего сообщения, прочитанного текущим пользователем
@@ -57,7 +57,7 @@ namespace VkNet.Model
 					TotalCount = response[key: "count"]
 					, Unread = response[key: "unread"] ?? response[key: "unread_dialogs"]
 					, RealOffset = response[key: "real_offset"]
-					, Messages = response[key: "items"].ToReadOnlyCollectionOf<Message>(selector: m => m)
+					, Messages = response[key: "items"].ToListOf<Message>(selector: m => m)
 					, InRead = response[key: "in_read"]
 					, OutRead = response[key: "out_read"]
 			};

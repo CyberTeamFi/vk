@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -15,7 +15,7 @@ namespace VkNet.Model
 		/// Размеры
 		/// </summary>
 		[JsonProperty("sizes")]
-		public ReadOnlyCollection<CoverSize> Sizes { get; set; }
+		public List<CoverSize> Sizes { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -26,7 +26,7 @@ namespace VkNet.Model
 		{
 			return new Cover
 			{
-				Sizes = response["sizes"].ToReadOnlyCollectionOf<CoverSize>(x => x)
+				Sizes = response["sizes"].ToListOf<CoverSize>(x => x)
 			};
 		}
 

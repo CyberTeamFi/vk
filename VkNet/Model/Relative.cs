@@ -1,4 +1,5 @@
 ﻿using System;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -22,6 +23,7 @@ namespace VkNet.Model
 		/// Тип родственника (sibling и т.п.)
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		[DynamoDBProperty(typeof(DynamoSafetyEnumConverter<RelativeType>))]
 		public RelativeType Type { get; set; }
 
 		/// <summary>

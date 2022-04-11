@@ -1,6 +1,8 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics;
+using Amazon.DynamoDBv2.DataModel;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -20,6 +22,7 @@ namespace VkNet.Model
 	/// </summary>
 	[DebuggerDisplay("[{Id}] {FirstName} {LastName}")]
 	[Serializable]
+	[DynamoDBTable("User")]
 	public class User
 	{
 	#region Методы
@@ -30,103 +33,104 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static User FromJson(VkResponse response)
 		{
-			var user = new User
-			{
-				Id = response["user_id"] ?? response["uid"] ?? response["id"] ?? 0,
-				FirstName = response["first_name"],
-				LastName = response["last_name"],
-				Sex = response["sex"],
-				BirthDate = response["bdate"],
-				City = response["city"],
-				Country = response["country"],
-				PhotoPreviews = response,
-				Online = response["online"],
-				FriendLists = response["lists"].ToReadOnlyCollectionOf<long>(x => x),
-				Domain = response["domain"],
-				HasMobile = response["has_mobile"],
-				MobilePhone = response["mobile_phone"] ?? response["phone"],
-				HomePhone = response["home_phone"],
-				Connections = response,
-				Site = response["site"],
-				Education = response,
-				Universities = response["universities"].ToReadOnlyCollectionOf<University>(x => x),
-				Schools = response["schools"].ToReadOnlyCollectionOf<School>(x => x),
-				CanPost = response["can_post"],
-				CanSeeAllPosts = response["can_see_all_posts"],
-				CanSeeAudio = response["can_see_audio"],
-				CanWritePrivateMessage = response["can_write_private_message"],
-				Status = response["status"],
-				StatusAudio = response["status_audio"],
-				LastSeen = response["last_seen"],
-				CommonCount = response["common_count"],
-				Relation = response["relation"],
-				Relatives = response["relatives"].ToReadOnlyCollectionOf<Relative>(x => x),
-				Counters = response["counters"],
-				ScreenName = response["screen_name"],
-				Nickname = response["nickname"],
-				Timezone = response["timezone"],
-				Language = response["language"],
-				OnlineMobile = response["online_mobile"],
-				OnlineApp = response["online_app"],
-				RelationPartner = response["relation_partner"],
-				StandInLife = response["personal"],
-				Interests = response["interests"],
-				Music = response["music"],
-				Activities = response["activities"],
-				Movies = response["movies"],
-				Tv = response["tv"],
-				Books = response["books"],
-				Games = response["games"],
-				About = response["about"],
-				Quotes = response["quotes"],
-				InvitedBy = response["invited_by"],
-				BanInfo = response["ban_info"],
-				Deactivated = response["deactivated"],
-				MaidenName = response["maiden_name"],
-				BirthdayVisibility = response["bdate_visibility"],
-				HomeTown = response["home_town"],
-				ChangeNameRequest = response["name_request"],
-				Contacts = response["contacts"],
-				Hidden = response["hidden"],
-				PhotoId = response["photo_id"],
-				Verified = response["verified"],
-				HasPhoto = response["has_photo"],
-				Photo50 = response["photo_50"],
-				Photo100 = response["photo_100"],
-				Photo200Orig = response["photo_200_orig"],
-				Photo200 = response["photo_200"],
-				Photo400Orig = response["photo_400_orig"],
-				PhotoMax = response["photo_max"],
-				PhotoMaxOrig = response["photo_max_orig"],
-				FollowersCount = response["followers_count"],
-				Occupation = response["occupation"],
-				Exports = response["exports"],
-				WallComments = response["wall_comments"],
-				CanSendFriendRequest = response["can_send_friend_request"],
-				IsFavorite = response["is_favorite"],
-				IsHiddenFromFeed = response["is_hidden_from_feed"],
-				CropPhoto = response["crop_photo"],
-				IsFriend = response["is_friend"] == "1", FriendStatus = response["friend_status"],
-				Career = response["career"].ToReadOnlyCollectionOf<Career>(x => x), Military = response["military"],
-				Blacklisted = response["blacklisted"],
-				BlacklistedByMe = response["blacklisted_by_me"],
-				Trending = response["trending"],
-				FirstNameNom = response["first_name_nom"],
-				FirstNameGen = response["first_name_gen"],
-				FirstNameDat = response["first_name_dat"],
-				FirstNameAcc = response["first_name_acc"],
-				FirstNameIns = response["first_name_ins"],
-				FirstNameAbl = response["first_name_abl"],
-				LastNameNom = response["last_name_nom"],
-				LastNameGen = response["last_name_gen"],
-				LastNameDat = response["last_name_dat"],
-				LastNameAcc = response["last_name_acc"],
-				LastNameIns = response["last_name_ins"],
-				LastNameAbl = response["last_name_abl"],
-				IsClosed = response["is_closed"],
-				CanAccessClosed = response["can_access_closed"],
-				Count = response["count"]
-			};
+			var user = new User();
+
+			user.Id = response["user_id"] ?? response["uid"] ?? response["id"] ?? 0;
+			user.FirstName = response["first_name"];
+			user.LastName = response["last_name"];
+			user.Sex = response["sex"];
+			user.BirthDate = response["bdate"];
+			user.City = response["city"];
+			user.Country = response["country"];
+			user.PhotoPreviews = response;
+			user.Online = response["online"];
+			user.FriendLists = response["lists"].ToListOf<long>(x => x);
+			user.Domain = response["domain"];
+			user.HasMobile = response["has_mobile"];
+			user.MobilePhone = response["mobile_phone"] ?? response["phone"];
+			user.HomePhone = response["home_phone"];
+			user.Connections = response;
+			user.Site = response["site"];
+			user.Education = response;
+			user.Universities = response["universities"].ToListOf<University>(x => x);
+			user.Schools = response["schools"].ToListOf<School>(x => x);
+			user.CanPost = response["can_post"];
+			user.CanSeeAllPosts = response["can_see_all_posts"];
+			user.CanSeeAudio = response["can_see_audio"];
+			user.CanWritePrivateMessage = response["can_write_private_message"];
+			user.Status = response["status"];
+			user.StatusAudio = response["status_audio"];
+			user.LastSeen = response["last_seen"];
+			user.CommonCount = response["common_count"];
+			user.Relation = response["relation"];
+			user.Relatives = response["relatives"].ToListOf<Relative>(x => x);
+			user.Counters = response["counters"];
+			user.ScreenName = response["screen_name"];
+			user.Nickname = response["nickname"];
+			user.Timezone = response["timezone"];
+			user.Language = response["language"];
+			user.OnlineMobile = response["online_mobile"];
+			user.OnlineApp = response["online_app"];
+			user.RelationPartner = response["relation_partner"];
+			user.StandInLife = response["personal"];
+			user.Interests = response["interests"];
+			user.Music = response["music"];
+			user.Activities = response["activities"];
+			user.Movies = response["movies"];
+			user.Tv = response["tv"];
+			user.Books = response["books"];
+			user.Games = response["games"];
+			user.About = response["about"];
+			user.Quotes = response["quotes"];
+			user.InvitedBy = response["invited_by"];
+			user.BanInfo = response["ban_info"];
+			user.Deactivated = response["deactivated"];
+			user.MaidenName = response["maiden_name"];
+			user.BirthdayVisibility = response["bdate_visibility"];
+			user.HomeTown = response["home_town"];
+			user.ChangeNameRequest = response["name_request"];
+			user.Contacts = response["contacts"];
+			user.Hidden = response["hidden"];
+			user.PhotoId = response["photo_id"];
+			user.Verified = response["verified"];
+			user.HasPhoto = response["has_photo"];
+			user.Photo50 = response["photo_50"];
+			user.Photo100 = response["photo_100"];
+			user.Photo200Orig = response["photo_200_orig"];
+			user.Photo200 = response["photo_200"];
+			user.Photo400Orig = response["photo_400_orig"];
+			user.PhotoMax = response["photo_max"];
+			user.PhotoMaxOrig = response["photo_max_orig"];
+			user.FollowersCount = response["followers_count"];
+			user.Occupation = response["occupation"];
+			user.Exports = response["exports"];
+			user.WallComments = response["wall_comments"];
+			user.CanSendFriendRequest = response["can_send_friend_request"];
+			user.IsFavorite = response["is_favorite"];
+			user.IsHiddenFromFeed = response["is_hidden_from_feed"];
+			user.CropPhoto = response["crop_photo"];
+			user.IsFriend = response["is_friend"] == "1";
+			user.FriendStatus = response["friend_status"];
+			user.Career = response["career"].ToListOf<Career>(x => x);
+			user.Military = response["military"];
+			user.Blacklisted = response["blacklisted"];
+			user.BlacklistedByMe = response["blacklisted_by_me"];
+			user.Trending = response["trending"];
+			user.FirstNameNom = response["first_name_nom"];
+			user.FirstNameGen = response["first_name_gen"];
+			user.FirstNameDat = response["first_name_dat"];
+			user.FirstNameAcc = response["first_name_acc"];
+			user.FirstNameIns = response["first_name_ins"];
+			user.FirstNameAbl = response["first_name_abl"];
+			user.LastNameNom = response["last_name_nom"];
+			user.LastNameGen = response["last_name_gen"];
+			user.LastNameDat = response["last_name_dat"];
+			user.LastNameAcc = response["last_name_acc"];
+			user.LastNameIns = response["last_name_ins"];
+			user.LastNameAbl = response["last_name_abl"];
+			user.IsClosed = response["is_closed"];
+			user.CanAccessClosed = response["can_access_closed"];
+			user.Count = response["count"];
 
 			user.IsDeactivated = user.Deactivated != null;
 
@@ -189,6 +193,7 @@ namespace VkNet.Model
 		/// Идентификатор пользователя.
 		/// </summary>
 		[JsonProperty("id")]
+		[DynamoDBHashKey]
 		public long Id { get; set; }
 
 		/// <summary>
@@ -238,6 +243,7 @@ namespace VkNet.Model
 		/// Причина блокирования аккаунта
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		[DynamoDBProperty(typeof(DynamoSafetyEnumConverter<Deactivated>))]
 		public Deactivated Deactivated { get; set; }
 
 		/// <summary>
@@ -315,7 +321,7 @@ namespace VkNet.Model
 		/// Информация о карьере пользователя.
 		/// </summary>
 		[JsonProperty("career")]
-		public ReadOnlyCollection<Career> Career { get; set; }
+		public List<Career> Career { get; set; }
 
 		/// <summary>
 		/// Идентификатор города, указанного на странице пользователя в разделе «Контакты».
@@ -539,7 +545,7 @@ namespace VkNet.Model
 		/// поле lists
 		/// </remarks>
 		[JsonProperty("lists")]
-		public ReadOnlyCollection<long> FriendLists { get; set; }
+		public List<long> FriendLists { get; set; }
 
 		/// <summary>
 		/// Девичья фамилия (только для женского пола)
@@ -598,6 +604,7 @@ namespace VkNet.Model
 		/// возвращается http://vk.com/images/camera_c.gif
 		/// </summary>
 		[JsonProperty("photo_50")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
@@ -606,6 +613,7 @@ namespace VkNet.Model
 		/// возвращается http://vk.com/images/camera_b.gif.
 		/// </summary>
 		[JsonProperty("photo_100")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
@@ -614,6 +622,7 @@ namespace VkNet.Model
 		/// возвращается http://vk.com/images/camera_a.gif.
 		/// </summary>
 		[JsonProperty("photo_200_orig")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo200Orig { get; set; }
 
 		/// <summary>
@@ -623,6 +632,7 @@ namespace VkNet.Model
 		/// содержать этого поля.
 		/// </summary>
 		[JsonProperty("photo_200")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo200 { get; set; }
 
 		/// <summary>
@@ -631,6 +641,7 @@ namespace VkNet.Model
 		/// содержать этого поля.
 		/// </summary>
 		[JsonProperty("photo_400_orig")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri Photo400Orig { get; set; }
 
 		/// <summary>
@@ -649,6 +660,7 @@ namespace VkNet.Model
 		/// http://vk.com/images/camera_b.gif.
 		/// </summary>
 		[JsonProperty("photo_max")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri PhotoMax { get; set; }
 
 		/// <summary>
@@ -658,6 +670,7 @@ namespace VkNet.Model
 		/// http://vk.com/images/camera_a.gif.
 		/// </summary>
 		[JsonProperty("photo_max_orig")]
+		[DynamoDBProperty(typeof(DynamoUriConverter))]
 		public Uri PhotoMaxOrig { get; set; }
 
 		/// <summary>
@@ -670,7 +683,7 @@ namespace VkNet.Model
 		/// Родственники пользователя.
 		/// </summary>
 		[JsonProperty("relatives")]
-		public ReadOnlyCollection<Relative> Relatives { get; set; }
+		public List<Relative> Relatives { get; set; }
 
 		/// <summary>
 		/// Семейное положение.
@@ -682,7 +695,7 @@ namespace VkNet.Model
 		/// Школы, в которых учился пользователь.
 		/// </summary>
 		[JsonProperty("schools")]
-		public ReadOnlyCollection<School> Schools { get; set; }
+		public List<School> Schools { get; set; }
 
 		/// <summary>
 		/// Короткое имя (поддомен) страницы пользователя.
@@ -737,7 +750,7 @@ namespace VkNet.Model
 		/// Список высших учебных заведений, в которых учился пользователь.
 		/// </summary>
 		[JsonProperty("universities")]
-		public ReadOnlyCollection<University> Universities { get; set; }
+		public List<University> Universities { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если страница пользователя верифицирована, 0 — если не
@@ -812,6 +825,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Видимость даты рождения.
 		/// </summary>
+		[DynamoDBProperty(typeof(DynamoNullableEnumConverter<BirthdayVisibility>))]
 		public BirthdayVisibility? BirthdayVisibility { get; set; }
 
 		/// <summary>

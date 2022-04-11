@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -33,7 +33,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<Group>> GetByIdAsync(IEnumerable<string> groupIds, string groupId, GroupsFields fields,
+		public Task<List<Group>> GetByIdAsync(IEnumerable<string> groupIds, string groupId, GroupsFields fields,
 															bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetById(groupIds, groupId, fields, skipAuthorization));
@@ -46,7 +46,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
+		public Task<List<GroupMember>> IsMemberAsync(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
 																	bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => IsMember(groupId, userId, userIds, extended, skipAuthorization));

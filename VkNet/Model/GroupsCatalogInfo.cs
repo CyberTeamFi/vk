@@ -30,7 +30,7 @@ namespace VkNet.Model
 			var result = new GroupsCatalogInfo
 			{
 				Enabled = response[key: "enabled"],
-				Categories = response[key: "categories"].ToReadOnlyCollectionOf<CategoryGroup>(selector: o => o)
+				Categories = response[key: "categories"].ToListOf<CategoryGroup>(selector: o => o)
 			};
 
 			return result;

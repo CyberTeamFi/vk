@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -13,12 +13,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Online
 		/// </summary>
-		public ReadOnlyCollection<long> Online { get; set; }
+		public List<long> Online { get; set; }
 
 		/// <summary>
 		/// Online с мобильного телефона.
 		/// </summary>
-		public ReadOnlyCollection<long> MobileOnline { get; set; }
+		public List<long> MobileOnline { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -31,14 +31,14 @@ namespace VkNet.Model
 			{
 				return new FriendOnline
 				{
-						MobileOnline = response[key: "online_mobile"].ToReadOnlyCollectionOf<long>(selector: x => x)
-						, Online = response[key: "online"].ToReadOnlyCollectionOf<long>(selector: x => x)
+						MobileOnline = response[key: "online_mobile"].ToListOf<long>(selector: x => x)
+						, Online = response[key: "online"].ToListOf<long>(selector: x => x)
 				};
 			}
 
 			return new FriendOnline
 			{
-					Online = response.ToReadOnlyCollectionOf<long>(selector: x => x)
+					Online = response.ToListOf<long>(selector: x => x)
 			};
 		}
 	}

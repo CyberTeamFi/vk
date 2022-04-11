@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -22,7 +22,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<long>> GetAppUsersAsync()
+		public Task<List<long>> GetAppUsersAsync()
 		{
 			return TypeHelper.TryInvokeMethodAsync(GetAppUsers);
 		}
@@ -34,13 +34,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<MutualFriend>> GetMutualAsync(FriendsGetMutualParams @params)
+		public Task<List<MutualFriend>> GetMutualAsync(FriendsGetMutualParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetMutual(@params));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync(IEnumerable<long> userIds, bool? needSign = null)
+		public Task<List<AreFriendsResult>> AreFriendsAsync(IEnumerable<long> userIds, bool? needSign = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AreFriends(userIds, needSign));
 		}
@@ -105,7 +105,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<long>> GetRecentAsync(long? count = null)
+		public Task<List<long>> GetRecentAsync(long? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetRecent(count));
 		}
@@ -131,7 +131,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<User>> GetByPhonesAsync(IEnumerable<string> phones, ProfileFields fields)
+		public Task<List<User>> GetByPhonesAsync(IEnumerable<string> phones, ProfileFields fields)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetByPhones(phones, fields));
 		}

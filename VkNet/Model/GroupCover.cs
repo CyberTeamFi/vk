@@ -30,7 +30,7 @@ namespace VkNet.Model
 			return new GroupCover
 			{
 					Enabled = response[key: "enabled"]
-					, Images = response[key: "images"].ToReadOnlyCollectionOf<GroupCoverImage>(selector: o => o)
+					, Images = response[key: "images"].ToListOf<GroupCoverImage>(selector: o => o)
 			};
 		}
 	}

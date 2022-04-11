@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -19,17 +19,17 @@ namespace VkNet.Model
 		/// <summary>
 		/// Посты.
 		/// </summary>
-		public ReadOnlyCollection<Post> WallPosts { get; set; }
+		public List<Post> WallPosts { get; set; }
 
 		/// <summary>
 		/// Профили.
 		/// </summary>
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public List<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Группы.
 		/// </summary>
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public List<Group> Groups { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -44,9 +44,9 @@ namespace VkNet.Model
 			{
 				wallGetObject = new WallGetObject
 				{
-					WallPosts = response[key: "items"].ToReadOnlyCollectionOf<Post>(selector: r => r),
-					Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: r => r),
-					Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: r => r),
+					WallPosts = response[key: "items"].ToListOf<Post>(selector: r => r),
+					Profiles = response[key: "profiles"].ToListOf<User>(selector: r => r),
+					Groups = response[key: "groups"].ToListOf<Group>(selector: r => r),
 					TotalCount = response[key: "count"] ?? 1UL
 				};
 			}
@@ -54,7 +54,7 @@ namespace VkNet.Model
 			{
 				wallGetObject = new WallGetObject
 				{
-					WallPosts = response.ToReadOnlyCollectionOf<Post>(selector: r => r)
+					WallPosts = response.ToListOf<Post>(selector: r => r)
 				};
 
 				wallGetObject.TotalCount = (ulong) wallGetObject.WallPosts.Count;

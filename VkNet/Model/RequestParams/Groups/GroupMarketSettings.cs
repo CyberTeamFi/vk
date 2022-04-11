@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -33,13 +33,13 @@ namespace VkNet.Model.RequestParams
 		/// Идентификаторы стран;
 		/// </summary>
 		[JsonProperty("country_ids")]
-		public ReadOnlyCollection<long> CountryIds { get; set; }
+		public List<long> CountryIds { get; set; }
 
 		/// <summary>
 		/// Идентификаторы городов
 		/// </summary>
 		[JsonProperty("city_ids")]
-		public ReadOnlyCollection<long> CityIds { get; set; }
+		public List<long> CityIds { get; set; }
 
 		/// <summary>
 		/// Идентификатор контактного лица;
@@ -65,8 +65,8 @@ namespace VkNet.Model.RequestParams
 				Enabled = response["enabled"],
 				CommentsEnabled = response["comments_enabled"],
 				CanMessage = response["can_message"],
-				CountryIds = response["country_ids"].ToReadOnlyCollectionOf<long>(x => x),
-				CityIds = response["city_ids"].ToReadOnlyCollectionOf<long>(x => x),
+				CountryIds = response["country_ids"].ToListOf<long>(x => x),
+				CityIds = response["city_ids"].ToListOf<long>(x => x),
 				ContactId = response["contact_id"],
 				Currency = response["currency"]
 			};
